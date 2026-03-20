@@ -1,0 +1,3 @@
+System.out.println("Root element of the document: "
++ docEle.getNodeName());
+NodeList studentList = docEle.getElementsByTagName("student");

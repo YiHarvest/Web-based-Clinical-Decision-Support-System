@@ -1,0 +1,13 @@
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+public class XMLParser {
+public void getAllUserNames(String fileName) {
+try {
+DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+DocumentBuilder db = dbf.newDocumentBuilder();
+File file = new File(fileName);
+if (file.exists()) {
+Document doc = db.parse(file);
+Element docEle = doc.getDocumentElement();

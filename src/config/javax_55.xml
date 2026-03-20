@@ -1,0 +1,25 @@
+Element e = (Element) node;
+NodeList nodeList = e.getElementsByTagName("name");
+System.out.println("Name: "
++ nodeList.item(0).getChildNodes().item(0)
+.getNodeValue());
+nodeList = e.getElementsByTagName("grade");
+System.out.println("Grade: "
++ nodeList.item(0).getChildNodes().item(0)
+.getNodeValue());
+nodeList = e.getElementsByTagName("age");
+System.out.println("Age: "
++ nodeList.item(0).getChildNodes().item(0)
+.getNodeValue());
+}
+}
+} else {
+System.exit(1);
+}
+}
+} catch (Exception e) {
+System.out.println(e);
+}
+}
+public static void main(String[] args) {
+XMLParser parser = new XMLParser();

@@ -1,0 +1,5 @@
+.println("Total students: " + studentList.getLength());
+if (studentList != null && studentList.getLength() > 0) {
+for (int i = 0; i < studentList.getLength(); i++) {
+Node node = studentList.item(i);
+if (node.getNodeType() == Node.ELEMENT_NODE) {

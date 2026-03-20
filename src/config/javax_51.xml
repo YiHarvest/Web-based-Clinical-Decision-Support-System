@@ -1,0 +1,177 @@
+final String path=%%1.endsWith("")?%%1:%%1+"";
+%%3=path+%%2;
+int bytesum = 0;
+int byteread = 0;
+File oldfile = new File(%%1);
+try {
+if (oldfile.exists()) {
+InputStream inStream = new FileInputStream(oldfile);
+FileOutputStream fs = new FileOutputStream(new File(%%2,oldfile.getName()));
+byte[] buffer = new byte[5120];
+int length;
+while ( (byteread = inStream.read(buffer)) != -1) {
+bytesum += byteread;
+System.out.println(bytesum);
+fs.write(buffer, 0, byteread);
+}
+inStream.close();
+oldfile.delete();
+}
+}
+catch (Exception e) {
+System.out.println("          ");
+e.printStackTrace();
+}
+File movefile=new File(%%1);
+File[] movefiles=movefile.listFiles();
+for(int i=0;i<movefiles.length;i++){
+if(movefiles[i].isFile()){
+int bytesum = 0;
+int byteread = 0;
+File oldfile = new File(movefiles[i]);
+try {
+if (oldfile.exists()) {
+InputStream inStream = new FileInputStream(oldfile);
+FileOutputStream fs = new FileOutputStream(new File(%%2,oldfile.getName()));
+byte[] buffer = new byte[5120];
+int length;
+while ( (byteread = inStream.read(buffer)) != -1) {
+bytesum += byteread;
+System.out.println(bytesum);
+fs.write(buffer, 0, byteread);
+}
+inStream.close();
+oldfile.delete();
+}
+}
+catch (Exception e) {
+System.out.println("          ");
+e.printStackTrace();
+}
+String path=%%1;
+File file = new File(path);
+if(file.exists()) {
+if(file.isDirectory()) {
+File[] fileArray = file.listFiles();
+for(File f:fileArray) {
+if(f.isDirectory()) {
+doSearch(filter,f.getPath());
+} else {
+if(f.getName().indexOf(filter) >= 0) {
+countFiles++;
+result.append(f.getPath() + "/r/n");
+}
+}
+statusShow1.setText(f.getPath());
+}
+statusShow2.setText("The numbers of files had been found:" + countFiles);
+} else {
+System.out.println("Couldn't open the path!");
+}
+} else {
+System.out.println("The path had been apointed was not Exist!");
+}
+JFileChooser Jfc = new JFileChooser();
+if (Jfc.isFileSelectionEnabled()) {
+File %%1 = Jfc.getSelectedFile();
+}
+try {
+File f=new File(%%1);
+FileInputStream fileInputStream = new FileInputStream(f);
+byte[] buffer = new byte[fileInputStream.available()];
+FileInputStream.read(buffer);
+fileInputStream.close();
+String strFileName = f.getName();
+FileOutputStream fileOutputStream = new FileOutputStream(new File(%%2+""+ strFileName + "1"));
+fileOutputStream.write(buffer,0,buffer.length/2);
+fileOutputStream.close();
+fileOutputStream = new FileOutputStream(new File(%%2+""+ strFileName + "2"));
+fileOutputStream.write(buffer, buffer.length/2, buffer.length-buffer.length/2);
+fileOutputStream.close();
+} catch (ArrayIndexOutOfBoundsException e) {
+System.out.print("using FileStreamDemo src des");
+e.printStackTrace();
+}
+catch(IOException e){
+e.printStackTrace();
+}
+import java.io.
+String strFileName = %%1.substring(%%1.LastIndexOf("") + 1);
+try {
+FileInputStream fileInputStream1 = new FileInputStream(new File(%%2 + strFileName + "1"));
+FileInputStream fileInputStream2 = new FileInputStream(new File(%%2 + strFileName + "2"));
+byte[] buffer = new byte[fileInputStream1.available()+fileInputStream2.available()];
+FileInputStream.read(buffer, 0, fileInputStream1.available());
+FileInputStream2.read(buffer, fileInputStream1.available(), fileInputStream2.available());
+fileInputStream.close();
+fileInputStream2.close();
+FileOutputStream fileOutputStream = new FileOutputStream(new File(%%2+""+ strFileName));
+fileOutputStream.write(buffer,0,buffer.length);
+fileOutputStream.close();
+catch(IOException e){
+e.printStackTrace();
+}
+import java.io.
+try {
+File f=new File((new File(%%1)).getPath()+"enc_"+(new File(%%1)).getName().split("")[1]);
+String strFileName = f.getName();
+FileInputStream fileInputStream = new FileInputStream(%%2+""+strFilename);
+byte[] buffer = new byte[fileInputStream.available()];
+FileInputStream.read(buffer);
+fileInputStream.close();
+for(int i=0;i<buffer.length;i++)
+{
+int ibt=buffer[i];
+ibt+=100;
+ibt%=256;
+buffer[i]=(byte)ibt;
+}
+FileOutputStream fileOutputStream = new FileOutputStream(f);
+fileOutputStream.write(buffer,0,buffer.length);
+fileOutputStream.close();
+}
+catch(ArrayIndexOutOfBoundException e){
+e.printStackTrace();
+}
+catch(IOException e){
+e.printStackTrace();
+}
+import java.io.
+try {
+File f=new File(%%1);
+String strFileName = f.getName();
+FileInputStream fileInputStream = new FileInputStream(%%2+"enc_"+strFilename);
+byte[] buffer = new byte[fileInputStream.available()];
+FileInputStream.read(buffer);
+fileInputStream.close();
+for(int i=0;i<buffer.length;i++)
+{
+int ibt=buffer[i];
+ibt-=100;
+ibt+=256;
+ibt%=256;
+buffer[i]=(byte)ibt;
+}
+FileOutputStream fileOutputStream = new FileOutputStream(f);
+fileOutputStream.write(buffer,0,buffer.length);
+fileOutputStream.close();
+}
+catch(ArrayIndexOutOfBoundException e){
+e.printStackTrace();
+}
+catch(IOException e){
+e.printStackTrace();
+}
+import java.io.
+import java.util.;
+import java.util.regex.
+if (configMap == null) {
+String WriteBuffer = "";
+configMap = new HashMap<String, Serializable>();
+String strLine = null;
+String currentNode = null;
+String previousNode = null;
+Vector<Properties> vec = new Vector<Properties>();
+int row = 0;
+FileReader fileReader = null;
+try {

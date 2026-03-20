@@ -1,0 +1,74 @@
+FileOutputStream("hello3.txt")),true);
+pw.println(s);
+fr.close();
+isr.close();
+br.close();
+fw.close();
+osw.close();
+pw.close();
+}
+}
+File myFolderPath = new File(%%1);
+try {
+if (!myFolderPath.exists()) {
+myFolderPath.mkdir();
+}
+}
+catch (Exception e) {
+System.out.println("        ");
+e.printStackTrace();
+}
+File myFilePath = new File(%%1);
+try {
+if (!myFilePath.exists()) {
+myFilePath.createNewFile();
+}
+FileWriter resultFile = new FileWriter(myFilePath);
+PrintWriter myFile = new PrintWriter(resultFile);
+myFile.println(%%2);
+resultFile.close();
+}
+catch (Exception e) {
+System.out.println("        ");
+e.printStackTrace();
+}
+File myDelFile = new File(%%1);
+try {
+myDelFile.delete();
+}
+catch (Exception e) {
+System.out.println("        ");
+e.printStackTrace();
+}
+File delFolderPath = new File(%%1);
+try {
+delFolderPath.delete();
+}
+catch (Exception e) {
+System.out.println("     ");
+e.printStackTrace();
+}
+import java.io.
+File delfile=new File(%%1);
+File[] files=delfile.listFiles();
+for(int i=0;i<files.length;i++){
+if(files[i].isDirectory()){
+files[i].delete();
+}
+}
+import java.io.
+File delfilefolder=new File(%%1);
+try {
+if (!delfilefolder.exists()) {
+delfilefolder.delete();
+}
+delfilefolder.mkdir();
+}
+catch (Exception e) {
+System.out.println("   ");
+e.printStackTrace();
+import java.io.
+FileReader fr = new FileReader(%%1);
+BufferedReader br = new BufferedReader(fr);
+String %%2 = br.readLine();
+while (%%2 != null) {

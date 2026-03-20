@@ -1,0 +1,70 @@
+private final Image image;
+Transferable trans = new Transferable() {
+public DataFlavor[] getTransferDataFlavors() {
+return new DataFlavor[] { DataFlavor.imageFlavor };
+}
+public boolean isDataFlavorSupported(DataFlavor flavor) {
+return DataFlavor.imageFlavor.equals(flavor);
+}
+public Object getTransferData(DataFlavor flavor)
+throws UnsupportedFlavorException, IOException {
+if (isDataFlavorSupported(flavor))
+package net.java.pdf;
+{
+return image;
+throw new UnsupportedFlavorException(flavor);
+}
+};
+Toolkit.getDefaultToolkit().getSystemClipboard().setContents(trans,
+null);
+import java.io.
+import java.util.
+LinkedList<String> folderList = new LinkedList<String>();
+folderList.add(%%1);
+while (folderList.size() > 0) {
+File file = new File(folderList.peek());
+folderList.removeLast();
+File[] files = file.listFiles();
+ArrayList<File> fileList = new ArrayList<File>();
+for (int i = 0; i < files.length; i++) {
+if (files[i].isDirectory()) {
+folderList.add(files[i].getPath());
+} else {
+fileList.add(files[i]);
+}
+}
+for (File f : fileList) {
+f.delete();
+}
+}
+try {
+BufferedReader br = new BufferedReader(new FileReader(new File(
+"D:1.xls")));
+StringBuilder bd = new StringBuilder();
+StringBuffer bd = new StringBuffer();
+while (true) {
+String str = br.readLine();
+if (str == null) {
+break;
+}
+System.out.println(str);
+bd.append(str);
+}
+br.close();
+System.out.println(bd.toString());
+
+InputStream is = new FileInputStream(new File("d:\\1.xls"));
+byte b[] = new byte[Integer.parseInt(new File("d:\\1.xls").length()
++ "")];
+is.read(b);
+System.out.write(b);
+System.out.println();
+is.close();
+
+Reader r = new FileReader(new File("d:\\1.xls"));
+char c[] = new char[(int) new File("d:\\1.xls").length()];
+r.read(c);
+String str = new String(c);
+System.out.print(str);
+r.close();
+} catch (RuntimeException e) {

@@ -1,0 +1,12 @@
+DataInputStream puts = new DataInputStream(fget);
+while ((ch = puts.read()) >= 0) {
+getFile.write(ch);
+}
+fget.close();
+getFile.close();
+fc.closeServer();
+}
+catch (IOException ex)
+{
+ex.printStackTrace();
+}

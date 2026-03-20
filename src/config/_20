@@ -1,0 +1,21 @@
+e.printStackTrace();
+}
+FileReader fr = new FileReader("ming.txt");
+int ch = 0;
+while((ch = fr.read())!=-1 )
+package com.bdqn.dao;
+import java.io.*;
+import java.util.*;
+import java.util.regex.*;
+private HashMap configMap=null;
+private Map<String, Serializable> configMap=null;
+String %%2=null;
+if (configMap == null) {
+configMap = new HashMap<String, Serializable>();
+String strLine = null;
+String currentNode = null;
+String previousNode = null;
+Vector<Properties> vec = new Vector<Properties>();
+int row = 0;
+FileReader fileReader = null;
+try {
