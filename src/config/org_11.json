@@ -1,0 +1,12 @@
+private SimpleSingleton() {
+}
+Get instance for class SimpleSingleton
+public static SimpleSingleton getInstance() {
+return singleInstance;
+}
+}
+public enum SimpleSingleton {
+INSTANCE;
+public void doSomething() {
+}
+}

@@ -1,0 +1,13 @@
+FileInputStream("ming.txt")));
+String data = null;
+while((data = br.readLine())!=null)
+{
+System.out.println(data);
+}
+FileWriter fw = new FileWriter("hello.txt");
+String s = "hello world";
+fw.write(s,0,s.length());
+fw.flush();
+OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream("hello2.txt"));
+osw.write(s,0,s.length());
+osw.flush();

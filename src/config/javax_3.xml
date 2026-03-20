@@ -1,0 +1,21 @@
+.println("");
+Element e = (Element) node;
+NodeList nodeList = e.getElementsByTagName("name");
+System.out.println("Name: "
++ nodeList.item(0).getChildNodes().item(0)
+.getNodeValue());
+nodeList = e.getElementsByTagName("grade");
+System.out.println("Grade: "
++ nodeList.item(0).getChildNodes().item(0)
+public class Main {
+public static void main(String[] args) {
+String[][] countries = { { "United States", "New York" }, { "United Kingdom", "London" },
+{ "Netherland", "Amsterdam" }, { "Japan", "Tokyo" }, { "France", "Paris" } };
+Map countryCapitals = ArrayUtils.toMap(countries);
+System.out.println("Capital of Japan is " + countryCapitals.get("Japan"));
+System.out.println("Capital of France is " + countryCapitals.get("France"));
+}
+}
+public void postMail( String recipients[ ], String subject, String message , String from) throws MessagingException
+{
+boolean debug = false;

@@ -1,0 +1,38 @@
+%%2 = br.readLine();
+}
+br.close();
+fr.close();
+try {
+FileWriter fw = new FileWriter(%%1);
+fw.write(%%2);
+fw.flush();
+fw.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+import java.io.
+try {
+RandomAcessFile logFile=new RandomAcessFile(%%1,"rw");
+long lg=logFile.length();
+logFile.seek(%%2);
+logFile.writeByte(%%3);
+}catch(IOException ioe){
+System.out.println("      "+ioe.getMessage());
+}
+File af = new File(%%1);
+if (af.exists()) {
+System.out.println(f.getName() + "           " + f.length());
+System.out.println(f.isFile() ? "   " : "    ");
+System.out.println(f.isDirectory() ? "   " : "    ");
+System.out.println(f.canRead() ? "   " : " ");
+System.out.println(f.canWrite() ? "     " : "");
+System.out.println("           " + new Date(f.lastModified()));
+} else {
+System.out.println(f.getName() + "     ");
+System.out.println(f.isFile() ? "   " : "    ");
+System.out.println(f.isDirectory() ? "   " : "    ");
+System.out.println(f.canRead() ? "   " : " ");
+System.out.println(f.canWrite() ? "     " : "");
+System.out.println("          " + new Date(f.lastModified()));
+}
+if(f.canRead()){

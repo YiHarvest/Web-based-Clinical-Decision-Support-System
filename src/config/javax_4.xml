@@ -1,0 +1,2 @@
+Properties props = new Properties();
+props.put("mail.smtp.host", "smtp.example.com");

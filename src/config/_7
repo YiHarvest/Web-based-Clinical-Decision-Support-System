@@ -1,0 +1,11 @@
+msg.setSubject(subject);
+msg.setContent(message, "text/plain");
+Transport.send(msg);
+}
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+public class Main {
+public static void main(String[] args)  {
+try {
+URL my_url = new URL("http:coolshell.cn/");

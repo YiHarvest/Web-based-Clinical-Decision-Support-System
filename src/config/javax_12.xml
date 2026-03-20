@@ -1,0 +1,10 @@
+e.printStackTrace();
+}
+FileReader fr = new FileReader("ming.txt");
+int ch = 0;
+while((ch = fr.read())!=-1 )
+{
+System.out.print((char)ch);
+}
+read()
+read(char[] ch,int off,int length)
