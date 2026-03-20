@@ -1,0 +1,2969 @@
+Package com;
+import java.io;
+import java.util;
+package java.framework;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
+public class listdir{
+public static void listfile(String file){
+LinkedList<String> folderList = new LinkedList<String>(Arrays.asList(file));
+while (folderList.size() > 0) {
+File[] files = new File((String)folderList.poll()).listFiles();
+for (int i = 0; i < files.length; i++) {
+if (files[i].isDirectory())
+folderList.add(files[i].getPath());
+else
+System.out.println(files[i]);
+}
+}
+}
+}
+import java.io.FileOutputStream;
+import java.io.IOException;
+public class CreateAFile {
+public static void main(String[] args) throws IOException {
+byte[] buf = new byte[8192];
+long n = Long.parseLong(args[0]);
+FileOutputStream fos = new FileOutputStream(args[1]);
+long m = n / buf.length;
+for (long i = 0; i < m; i++) {
+fos.write(buf, 0, buf.length);
+}
+fos.write(buf, 0, (int)(n % buf.length));
+fos.close();
+}
+}
+import mx.collections.ArrayCollection;
+import mx.rpc.events.ResultEvent;
+import mx.rpc.http.HTTPService;
+public class StatisticalUtil
+{
+public static var statisticalArr:ArrayCollection=new ArrayCollection();
+public static var viewXMLList:XMLList=new XMLList();
+public function StatisticalUtil()
+{
+}
+private static final long serialVersionUID = 1L;
+private int xPosition = 100;
+private int yPosition = 50;
+private static final int xSize = 300;
+private static final int ySize = 100;
+private static Graphics2D graphics2D;
+private static final String MESSAGE = "Welcome to 2D Graphics";
+public Graphics1() {
+addWindowListener(new ExitAdapter());
+}
+public void paint(Graphics g) {
+graphics2D = (Graphics2D) g;
+graphics2D.drawString(MESSAGE, xPosition, yPosition);
+}
+public static void main(String[] args) {
+Graphics1 graphics1 = new Graphics1();
+graphics1.setTitle("Graphics 1");
+graphics1.setSize(xSize,ySize);
+graphics1.setVisible(true);
+}
+public class ExitAdapter extends WindowAdapter
+{
+public void windowClosing(WindowEvent e)
+{
+System.exit(0);
+}
+}
+}
+loader.load(request);
+}
+catch (error:Error)
+{
+trace("Unable to load URL");
+}
+function loaderCompleteHandler(e:Event):void
+{
+var variables:URLVariables = new URLVariables( e.target.data );
+if(variables.success)
+{
+trace(variables.path);
+}
+}
+function httpStatusHandler (e:Event):void
+{
+trace("httpStatusHandler:" + e);
+}
+function securityErrorHandler (e:Event):void
+{
+trace("securityErrorHandler:" + e);
+}
+function ioErrorHandler(e:Event):void
+{
+trace("ioErrorHandler: " + e);
+}while ((strLine = bufferedReader.readLine()) != null) {
+String oneLine = strLine.trim();
+if (oneLine.length() >= 1) {
+Pattern p = Pattern.compile("[s*.*s*]");
+package com.bdqn.dao;
+int nodelen = oneLine.split("[;]").length;
+String[] strArray1 = new String[4];
+if (nodelen == 1) {
+oneLine = oneLine.split("[;]")[0].trim();
+} else if (nodelen == 2) {
+strArray1[3] = oneLine.split("[;]")[1].trim();
+oneLine = oneLine.split("[;]")[0].trim();
+}
+Matcher m = p.matcher(oneLine);
+if (m.matches()) {
+strArray1[0] = "@Node";
+strArray1[1] = oneLine;
+strArray1[2] = "";
+} else {
+int keylen = oneLine.split("=").length;
+if (keylen == 1) {
+strArray1[0] = "@Key";
+strArray1[1] = oneLine.split("=")[0];
+strArray1[2] = "";
+} else if (keylen == 2) {
+strArray1[0] = "@Key";
+strArray1[1] = oneLine.split("=")[0];
+strArray1[2] = oneLine.split("=")[1];
+} else {
+strArray1[0] = "@ElementError";
+strArray1[1] = "";
+strArray1[2] = "";
+strArray1[3] = "";
+}
+}
+if (strArray1[0].equals("@Node")) {
+previousNode = currentNode;
+currentNode = strArray1[1];
+if (row > 0) {
+configMap.put(previousNode, vec.elementAt(0));
+vec.clear();
+row = 0;
+}
+WriteBuffer += (oneLine + "/r/n");
+} else if (strArray1[0].equals("@Key") && row == 0) {
+Properties ht = new Properties();
+ht.setProperty(strArray1[1], strArray1[2]);
+if (strArray1[1].equals(%%1)) {
+WriteBuffer += (%%1+"=" + %%2 + "/r/n");
+} else
+WriteBuffer += (oneLine + "/r/n");
+vec.add(0, ht);
+row++;
+} else if (strArray1[0].equals("@Key") && row > 0) {
+Properties ht2 = new Properties();
+ht2.put(strArray1[1], strArray1[2]);
+vec.clear();
+vec.add(0, ht2);
+WriteBuffer += (oneLine + "/r/n");
+row++;
+}
+}
+}
+configMap.put(currentNode, vec.elementAt(0));
+} catch (FileNotFoundException e) {
+configMap = null;
+e.printStackTrace();
+} catch (IOException e) {
+configMap = null;
+e.printStackTrace();
+} finally {
+vec.clear();
+try {
+bufferedReader.close();
+fileReader.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+try {
+FileWriter fw = new FileWriter("Config.ini");
+fw.write(WriteBuffer);
+fw.flush();
+fw.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+public void init(FileInputStream fs)
+throws ClassNotFoundException, SQLException, FileNotFoundException, IOException
+{
+Properties props = new Properties();
+props.load(fs);
+String url = props.getProperty("db.url");
+String userName = props.getProperty("db.user");
+String password = props.getProperty("db.password");
+Class.forName(driverClass);
+con=DriverManager.getConnection(url, userName, password);
+}
+public void fetch() throws SQLException, IOException
+{
+PreparedStatement ps = con.prepareStatement("select SYSDATE from dual");
+ResultSet rs = ps.executeQuery();
+while (rs.next())
+{
+do the thing you do
+}
+rs.close();
+ps.close();
+}
+public static void main(String[] args)
+{
+OracleJdbcTest test = new OracleJdbcTest();
+test.init();
+test.fetch();
+}
+}
+package com.bdqn.dao;
+Java util.Date
+java.util.Date utilDate = new java.util.Date();
+java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+public static void fileCopy( File in, File out )
+throws IOException
+{
+FileChannel inChannel = new FileInputStream( in ).getChannel();
+FileChannel outChannel = new FileOutputStream( out ).getChannel();
+try
+{
+inChannel.transferTo(0, inChannel.size(), outChannel);
+apparently has trouble copying large files on Windows
+magic number for Windows, 64Mb - 32Kb)
+int maxCount = (64 * 1024 * 1024) - (32 * 1024);
+long size = inChannel.size();
+long position = 0;
+while ( position < size )
+{
+position += inChannel.transferTo( position, maxCount, outChannel );
+}
+}
+finally
+{
+if ( inChannel != null )
+{
+inChannel.close();
+}
+if ( outChannel != null )
+{
+outChannel.close();
+}
+}
+}
+private void createThumbnail(String filename, int thumbWidth, int thumbHeight, int quality, String outFilename)
+throws InterruptedException, FileNotFoundException, IOException
+{
+load image from filename
+Image image = Toolkit.getDefaultToolkit().getImage(filename);
+MediaTracker mediaTracker = new MediaTracker(new Container());
+mediaTracker.addImage(image, 0);
+mediaTracker.waitForID(0);
+use this to test for errors at this point: System.out.println(mediaTracker.isErrorAny());
+determine thumbnail size from WIDTH and HEIGHT
+double thumbRatio = (double)thumbWidth / (double)thumbHeight;
+int imageWidth = image.getWidth(null);
+int imageHeight = image.getHeight(null);
+double imageRatio = (double)imageWidth / (double)imageHeight;
+if (thumbRatio < imageRatio) {
+thumbHeight = (int)(thumbWidth / imageRatio);
+} else {
+thumbWidth = (int)(thumbHeight * imageRatio);
+}
+draw original image to thumbnail image object and
+scale it to the new size on-the-fly
+BufferedImage thumbImage = new BufferedImage(thumbWidth, thumbHeight, BufferedImage.TYPE_INT_RGB);
+Graphics2D graphics2D = thumbImage.createGraphics();
+graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+graphics2D.drawImage(image, 0, 0, thumbWidth, thumbHeight, null);
+save thumbnail image to outFilename
+BufferedOutputStream out
+new BufferedOutputStream(new FileOutputStream(outFilename));
+JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(thumbImage);
+quality = Math.max(0, Math.min(quality, 100));
+param.setQuality((float)quality / 100.0f, false);
+encoder.setJPEGEncodeParam(param);
+encoder.encode(thumbImage);
+out.close();
+}
+package com.bdqn.dao;
+import org.json.JSONObject;
+JSONObject json = new JSONObject();
+json.put("city", "Mumbai");
+json.put("country", "India");
+String output = json.toString();
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Date;
+import com.lowagie.text.Document;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfWriter;
+public class GeneratePDF {
+public static void main(String[] args) {
+try {
+OutputStream file = new FileOutputStream(new File("C:\\Test.pdf"));
+Document document = new Document();
+PdfWriter.getInstance(document, file);
+document.open();
+document.add(new Paragraph("Hello Kiran"));
+document.add(new Paragraph(new Date().toString()));
+document.close();
+file.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+System.getProperties().put("http.proxyHost", "someProxyURL");
+System.getProperties().put("http.proxyPort", "someProxyPort");
+System.getProperties().put("http.proxyUser", "someUserName");
+System.getProperties().put("http.proxyPassword", "somePassword");
+Singleton
+public class SimpleSingleton {
+private static SimpleSingleton singleInstance =  new SimpleSingleton();
+Marking default constructor private
+to avoid direct instantiation.
+private SimpleSingleton() {
+}
+Get instance for class SimpleSingleton
+public static SimpleSingleton getInstance() {
+return singleInstance;
+}
+public enum SimpleSingleton {
+INSTANCE;
+public void doSomething() {
+}
+}
+Call the method from Singleton:
+SimpleSingleton.INSTANCE.doSomething();
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.File;
+public void captureScreen(String fileName) throws Exception {
+package com.bdqn.dao;
+Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+Rectangle screenRectangle = new Rectangle(screenSize);
+Robot robot = new Robot();
+BufferedImage image = robot.createScreenCapture(screenRectangle);
+ImageIO.write(image, "png", new File(fileName));
+}
+File dir = new File("directoryName");
+String[] children = dir.list();
+if (children == null) {
+Either dir does not exist or is not a directory
+} else {
+for (int i=0; i < children.length; i++) {
+Get filename of file or directory
+String filename = children[i];
+}
+}
+It is also possible to filter the list of returned files.
+This example does not return any files that start with `.'.
+FilenameFilter filter = new FilenameFilter() {
+public boolean accept(File dir, String name) {
+return !name.startsWith(".");
+}
+};
+children = dir.list(filter);
+The list of files can also be retrieved as File objects
+File[] files = dir.listFiles();
+This filter only returns directories
+FileFilter fileFilter = new FileFilter() {
+public boolean accept(File file) {
+return file.isDirectory();
+}
+};
+files = dir.listFiles(fileFilter);
+public class ZipIt {
+public static void main(String args[]) throws IOException {
+if (args.length < 2) {
+System.err.println("usage: java ZipIt Zip.zip file1 file2 file3");
+System.exit(-1);
+}
+File zipFile = new File(args[0]);
+if (zipFile.exists()) {
+System.err.println("Zip file already exists, please try another");
+System.exit(-2);
+}
+FileOutputStream fos = new FileOutputStream(zipFile);
+ZipOutputStream zos = new ZipOutputStream(fos);
+int bytesRead;
+byte[] buffer = new byte[1024];
+CRC32 crc = new CRC32();
+for (int i=1, n=args.length; i < n; i++) {
+String name = args[i];
+File file = new File(name);
+if (!file.exists()) {
+System.err.println("Skipping: " + name);
+continue;
+}
+BufferedInputStream bis = new BufferedInputStream(
+new FileInputStream(file));
+crc.reset();
+while ((bytesRead = bis.read(buffer)) != -1) {
+crc.update(buffer, 0, bytesRead);
+}
+bis.close();
+Reset to beginning of input stream
+bis = new BufferedInputStream(
+new FileInputStream(file));
+ZipEntry entry = new ZipEntry(name);
+entry.setMethod(ZipEntry.STORED);
+entry.setCompressedSize(file.length());
+entry.setSize(file.length());
+entry.setCrc(crc.getValue());
+zos.putNextEntry(entry);
+while ((bytesRead = bis.read(buffer)) != -1) {
+zos.write(buffer, 0, bytesRead);
+}
+bis.close();
+}
+zos.close();
+}
+}
+package net.java.java.xmlparser;
+import java.io.File;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+public class XMLParser {
+public void getAllUserNames(String fileName) {
+try {
+DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+DocumentBuilder db = dbf.newDocumentBuilder();
+File file = new File(fileName);
+if (file.exists()) {
+Document doc = db.parse(file);
+Element docEle = doc.getDocumentElement();
+Print root element of the document
+System.out.println("Root element of the document: "
++ docEle.getNodeName());
+NodeList studentList = docEle.getElementsByTagName("student");
+Print total student elements in document
+System.out
+.println("Total students: " + studentList.getLength());
+if (studentList != null && studentList.getLength() > 0) {
+for (int i = 0; i < studentList.getLength(); i++) {
+Node node = studentList.item(i);
+if (node.getNodeType() == Node.ELEMENT_NODE) {
+System.out
+.println("");
+Element e = (Element) node;
+NodeList nodeList = e.getElementsByTagName("name");
+System.out.println("Name: "
++ nodeList.item(0).getChildNodes().item(0)
+.getNodeValue());
+nodeList = e.getElementsByTagName("grade");
+System.out.println("Grade: "
++ nodeList.item(0).getChildNodes().item(0)
+public class Main {
+public static void main(String[] args) {
+String[][] countries = { { "United States", "New York" }, { "United Kingdom", "London" },
+{ "Netherland", "Amsterdam" }, { "Japan", "Tokyo" }, { "France", "Paris" } };
+Map countryCapitals = ArrayUtils.toMap(countries);
+System.out.println("Capital of Japan is " + countryCapitals.get("Japan"));
+System.out.println("Capital of France is " + countryCapitals.get("France"));
+}
+}
+public void postMail( String recipients[ ], String subject, String message , String from) throws MessagingException
+{
+boolean debug = false;
+Set the host smtp address
+Properties props = new Properties();
+props.put("mail.smtp.host", "smtp.example.com");
+create some properties and get the default Session
+Session session = Session.getDefaultInstance(props, null);
+session.setDebug(debug);
+create a message
+Message msg = new MimeMessage(session);
+set the from and to address
+InternetAddress addressFrom = new InternetAddress(from);
+msg.setFrom(addressFrom);
+InternetAddress[] addressTo = new InternetAddress[recipients.length];
+for (int i = 0; i < recipients.length; i++)
+{
+addressTo[i] = new InternetAddress(recipients[i]);
+}
+msg.setRecipients(Message.RecipientType.TO, addressTo);
+Optional : You can also set your custom headers in the Email if you Want
+msg.addHeader("MyHeaderName", "myHeaderValue");
+Setting the Subject and Content Type
+msg.setSubject(subject);
+msg.setContent(message, "text/plain");
+Transport.send(msg);
+package com.bdqn.dao;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+public class Main {
+public static void main(String[] args)  {
+try {
+URL my_url = new URL("http:coolshell.cn/");
+BufferedReader br = new BufferedReader(new InputStreamReader(my_url.openStream()));
+String strTemp = "";
+while(null != (strTemp = br.readLine())){
+System.out.println(strTemp);
+}
+} catch (Exception ex) {
+ex.printStackTrace();
+}
+}
+}
+Object newArray = java.lang.reflect.Array.newInstance(
+elementType,newSize);
+int preserveLength = Math.min(oldSize,newSize);
+if (preserveLength > 0)
+System.arraycopy (oldArray,0,newArray,0,preserveLength);
+return newArray;
+}
+Test routine for resizeArray().
+public static void main (String[] args) {
+int[] a = {1,2,3};
+a = (int[])resizeArray(a,5);
+a[3] = 4;
+a[4] = 5;
+for (int i=0; i<a.length; i++)
+System.out.println (a[i]);
+}
+try {
+BufferedReader br = new BufferedReader(new FileReader(new File(
+"D:\\1.xls")));
+StringBuilder bd = new StringBuilder();
+StringBuffer bd = new StringBuffer();
+while (true) {
+String str = br.readLine();
+if (str == null) {
+break;
+}
+System.out.println(str);
+bd.append(str);
+}
+br.close();
+System.out.println(bd.toString());
+InputStream is = new FileInputStream(new File("d:\\1.xls"));
+byte b[] = new byte[Integer.parseInt(new File("d:\\1.xls").length()
++ "")];
+is.read(b);
+System.out.write(b);
+System.out.println();
+is.close();
+Reader r = new FileReader(new File("d:\\1.xls"));
+char c[] = new char[(int) new File("d:\\1.xls").length()];
+r.read(c);
+String str = new String(c);
+System.out.print(str);
+r.close();
+} catch (RuntimeException e) {
+TODO Auto-generated catch block
+e.printStackTrace();
+} catch (FileNotFoundException e) {
+TODO Auto-generated catch block
+e.printStackTrace();
+} catch (IOException e) {
+TODO Auto-generated catch block
+e.printStackTrace();
+}
+FileReader fr = new FileReader("ming.txt");
+int ch = 0;
+while((ch = fr.read())!=-1 )
+{
+System.out.print((char)ch);
+}
+read()
+read(char[] ch,int off,int length)
+InputStreamReader
+while((ch = isr.read())!=-1)
+{
+System.out.print((char)ch);
+}
+FileWriter fw = new FileWriter("hello.txt");
+String s = "hello world";
+fw.write(s,0,s.length());
+fw.flush();
+OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream("hello2.txt"));
+osw.write(s,0,s.length());
+osw.flush();
+PrintWriter
+FileOutputStream("hello3.txt")),true);
+pw.println(s);
+hello world i like Java language
+package com.bdqn.dao;
+import java
+public class TestFile2
+public static void main(String[] args)
+throws IOException
+{
+FileReader fr = new FileReader("ming.txt");
+char[] buffer = new char[1024];
+int ch = 0;
+while((ch = fr.read())!=-1 )
+{
+System.out.print((char)ch);
+}
+InputStreamReader isr = new InputStreamReader(new FileInputStream("ming.txt"));
+while((ch = isr.read())!=-1)
+{
+System.out.print((char)ch);
+}
+BufferedReader
+FileInputStream("ming.txt")));
+String data = null;
+while((data = br.readLine())!=null)
+{
+System.out.println(data);
+}
+FileWriter fw = new FileWriter("hello.txt");
+String s = "hello world";
+fw.write(s,0,s.length());
+fw.flush();
+OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream("hello2.txt"));
+osw.write(s,0,s.length());
+osw.flush();
+PrintWriter
+FileOutputStream("hello3.txt")),true);
+pw.println(s);
+fr.close();
+isr.close();
+br.close();
+fw.close();
+osw.close();
+pw.close();
+}
+}
+File myFolderPath = new File(%%1);
+try {
+if (!myFolderPath.exists()) {
+myFolderPath.mkdir();
+}
+}
+catch (Exception e) {
+System.out.println("        ");
+e.printStackTrace();
+}
+File myFilePath = new File(%%1);
+try {
+if (!myFilePath.exists()) {
+myFilePath.createNewFile();
+}
+FileWriter resultFile = new FileWriter(myFilePath);
+PrintWriter myFile = new PrintWriter(resultFile);
+myFile.println(%%2);
+resultFile.close();
+}
+catch (Exception e) {
+System.out.println("        ");
+e.printStackTrace();
+}
+File myDelFile = new File(%%1);
+try {
+myDelFile.delete();
+}
+catch (Exception e) {
+System.out.println("        ");
+e.printStackTrace();
+}
+File delFolderPath = new File(%%1);
+try {
+delFolderPath.delete();
+}
+catch (Exception e) {
+System.out.println("     ");
+e.printStackTrace();
+}
+import java.io.
+File delfile=new File(%%1);
+File[] files=delfile.listFiles();
+for(int i=0;i<files.length;i++){
+if(files[i].isDirectory()){
+files[i].delete();
+}
+}
+import java.io.
+File delfilefolder=new File(%%1);
+try {
+if (!delfilefolder.exists()) {
+delfilefolder.delete();
+}
+delfilefolder.mkdir();
+}
+catch (Exception e) {
+System.out.println("   ");
+e.printStackTrace();
+import java.io.
+FileReader fr = new FileReader(%%1);
+BufferedReader br = new BufferedReader(fr);
+String %%2 = br.readLine();
+while (%%2 != null) {
+%%3
+%%2 = br.readLine();
+}
+br.close();
+fr.close();
+try {
+FileWriter fw = new FileWriter(%%1);
+fw.write(%%2);
+fw.flush();
+fw.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+import java.io.
+try {
+RandomAcessFile logFile=new RandomAcessFile(%%1,"rw");
+long lg=logFile.length();
+logFile.seek(%%2);
+logFile.writeByte(%%3);
+}catch(IOException ioe){
+System.out.println("      "+ioe.getMessage());
+}
+File af = new File(%%1);
+if (af.exists()) {
+System.out.println(f.getName() + "           " + f.length());
+System.out.println(f.isFile() ? "   " : "    ");
+System.out.println(f.isDirectory() ? "   " : "    ");
+System.out.println(f.canRead() ? "   " : " ");
+System.out.println(f.canWrite() ? "     " : "");
+System.out.println("           " + new Date(f.lastModified()));
+} else {
+System.out.println(f.getName() + "     ");
+System.out.println(f.isFile() ? "   " : "    ");
+System.out.println(f.isDirectory() ? "   " : "    ");
+System.out.println(f.canRead() ? "   " : " ");
+System.out.println(f.canWrite() ? "     " : "");
+System.out.println("          " + new Date(f.lastModified()));
+}
+if(f.canRead()){
+%%2
+}
+if(f.canWrite()){
+%%3
+}
+File filereadonly=new File(%%1);
+try {
+boolean b=filereadonly.setReadOnly();
+}
+catch (Exception e) {
+System.out.println("     "+e.printStackTrace());
+}
+LinkedList<String> folderList = new LinkedList<String>();
+folderList.add(%%1);
+while (folderList.size() > 0) {
+File file = new File(folderList.peek());
+folderList.removeLast();
+File[] files = file.listFiles();
+ArrayList<File> fileList = new ArrayList<File>();
+for (int i = 0; i < files.length; i++) {
+if (files[i].isDirectory()) {
+folderList.add(files[i].getPath());
+} else {
+fileList.add(files[i]);
+}
+}
+for (File f : fileList) {
+%%2=f.getAbsoluteFile();
+%%3
+}
+}
+LinkedList<String> folderList = new LinkedList<String>();
+folderList.add(%%1);
+LinkedList<String> folderList2 = new LinkedList<String>();
+folderList2.add(%%2+ %%1.substring(%%1.lastIndexOf("")));
+while (folderList.size() > 0) {
+(new File(folderList2.peek())).mkdirs();
+File folders = new File(folderList.peek());
+String[] file = folders.list();
+File temp = null;
+try {
+for (int i = 0; i < file.length; i++) {
+if (folderList.peek().endsWith(File.separator)) {
+temp = new File(folderList.peek() + File.separator
++ file[i]);
+} else {
+temp = new File(folderList.peek() + File.separator
++ file[i]);
+}
+if (temp.isFile()) {
+FileInputStream input = new FileInputStream(temp);
+FileOutputStream output = new FileOutputStream(
+folderList2.peek() + File.separator
++ (temp.getName()).toString());
+byte[] b = new byte[5120];
+int len;
+while ((len = input.read(b)) != -1) {
+output.write(b, 0, len);
+}
+output.flush();
+output.close();
+input.close();
+}
+if (temp.isDirectory()) {
+for (File f : temp.listFiles()) {
+if (f.isDirectory()) {
+folderList.add(f.getPath());
+folderList2.add(folderList2.peek()
++ File.separator + f.getName());
+}
+}
+}
+}
+} catch (Exception e) {
+System.out.println("             ");
+e.printStackTrace();
+}
+folderList.removeFirst();
+folderList2.removeFirst();
+}
+File copyfolders=new File(%%1);
+File[] copyfoldersList=copyfolders.listFiles();
+for(int k=0;k<copyfoldersList.length;k++){
+if(copyfoldersList[k].isDirectory()){
+ArrayList<String>folderList=new ArrayList<String>();
+folderList.add(copyfoldersList[k].getPath());
+ArrayList<String>folderList2=new ArrayList<String>();
+folderList2.add(%%2+"/"+copyfoldersList[k].getName());
+for(int j=0;j<folderList.length;j++){
+(new File(folderList2.get(j))).mkdirs();
+File folders=new File(folderList.get(j));
+String[] file=folders.list();
+File temp=null;
+try {
+for (int i = 0; i < file.length; i++) {
+if(folderList.get(j).endsWith(File.separator)){
+temp=new File(folderList.get(j)+"/"+file[i]);
+}
+else{
+temp=new File(folderList.get(j)+"/"+File.separator+file[i]);
+}
+FileInputStream input = new FileInputStream(temp);
+if(temp.isFile()){
+FileInputStream input = new FileInputStream(temp);
+FileOutputStream output = new FileOutputStream(folderList2.get(j) + "/" +
+(temp.getName()).toString());
+byte[] b = new byte[5120];
+int len;
+while ( (len = input.read(b)) != -1) {
+output.write(b, 0, len);
+}
+output.flush();
+output.close();
+input.close();
+}
+if(temp.isDirectory()){
+folderList.add(folderList.get(j)+"/"+file[i]);
+folderList2.add(folderList2.get(j)+"/"+file[i]);
+}
+}
+}
+catch (Exception e) {
+System.out.println("             ");
+e.printStackTrace();
+}
+}
+LinkedList<String> folderList = new LinkedList<String>();
+folderList.add(%%1);
+LinkedList<String> folderList2 = new LinkedList<String>();
+folderList2.add(%%2 + %%1.substring(%%1.lastIndexOf("")));
+while (folderList.size() > 0) {
+(new File(folderList2.peek())).mkdirs();
+File folders = new File(folderList.peek());
+String[] file = folders.list();
+File temp = null;
+try {
+for (int i = 0; i < file.length; i++) {
+if (folderList.peek().endsWith(File.separator)) {
+temp = new File(folderList.peek() + File.separator
++ file[i]);
+} else {
+temp = new File(folderList.peek() + File.separator
++ file[i]);
+}
+if (temp.isFile()) {
+FileInputStream input = new FileInputStream(temp);
+FileOutputStream output = new FileOutputStream(
+folderList2.peek() + File.separator
++ (temp.getName()).toString());
+byte[] b = new byte[5120];
+int len;
+while ((len = input.read(b)) != -1) {
+output.write(b, 0, len);
+}
+output.flush();
+output.close();
+input.close();
+if (!temp.delete())
+System.out.println("          !");
+}
+if (temp.isDirectory()) {
+for (File f : temp.listFiles()) {
+if (f.isDirectory()) {
+folderList.add(f.getPath());
+folderList2.add(folderList2.peek()
++ File.separator + f.getName());
+}
+}
+}
+}
+} catch (Exception e) {
+System.out.println("             ");
+e.printStackTrace();
+}
+folderList.removeFirst();
+folderList2.removeFirst();
+}
+File f = new File(%%1);
+if (!f.delete()) {
+for (File file : f.listFiles()) {
+if (file.list().length == 0) {
+System.out.println(file.getPath());
+file.delete();
+}
+}
+}
+File movefolders=new File(%%1);
+File[] movefoldersList=movefolders.listFiles();
+for(int k=0;k<movefoldersList.length;k++){
+if(movefoldersList[k].isDirectory()){
+ArrayList<String>folderList=new ArrayList<String>();
+folderList.add(movefoldersList[k].getPath());
+ArrayList<String>folderList2=new ArrayList<String>();
+folderList2.add(%%2+"/"+movefoldersList[k].getName());
+for(int j=0;j<folderList.length;j++){
+(new File(folderList2.get(j))).mkdirs();
+File folders=new File(folderList.get(j));
+String[] file=folders.list();
+File temp=null;
+try {
+for (int i = 0; i < file.length; i++) {
+if(folderList.get(j).endsWith(File.separator)){
+temp=new File(folderList.get(j)+"/"+file[i]);
+}
+else{
+temp=new File(folderList.get(j)+"/"+File.separator+file[i]);
+}
+FileInputStream input = new FileInputStream(temp);
+if(temp.isFile()){
+FileInputStream input = new FileInputStream(temp);
+FileOutputStream output = new FileOutputStream(folderList2.get(j) + "/" +
+(temp.getName()).toString());
+byte[] b = new byte[5120];
+int len;
+while ( (len = input.read(b)) != -1) {
+output.write(b, 0, len);
+}
+output.flush();
+output.close();
+input.close();
+temp.delete();
+}
+if(temp.isDirectory()){
+folderList.add(folderList.get(j)+"/"+file[i]);
+folderList2.add(folderList2.get(j)+"/"+file[i]);
+}
+}
+}
+catch (Exception e) {
+System.out.println("             ");
+e.printStackTrace();
+}
+}
+movefoldersList[k].delete();
+}
+}
+boolean b=false;
+ArrayList<String>folderList=new ArrayList<String>();
+folderList.add(%%1);
+ArrayList<String>folderList2=new ArrayList<String>();
+folderList2.add(%%2);
+for(int j=0;j<folderList.length;j++){
+(new File(folderList2.get(j))).mkdirs();
+File folders=new File(folderList.get(j));
+String[] file=folders.list();
+File temp=null;
+try {
+for (int i = 0; i < file.length; i++) {
+if(folderList.get(j).endsWith(File.separator)){
+temp=new File(folderList.get(j)+"/"+file[i]);
+}
+else{
+temp=new File(folderList.get(j)+"/"+File.separator+file[i]);
+}
+FileInputStream input = new FileInputStream(temp);
+if(temp.isFile()){
+if (b) temp.createNewFile();
+}
+if(temp.isDirectory()){
+folderList.add(folderList.get(j)+"/"+file[i]);
+folderList2.add(folderList2.get(j)+"/"+file[i]);
+}
+}
+}
+catch (Exception e) {
+System.out.println("             ");
+e.printStackTrace();
+}
+}
+int bytesum = 0;
+int byteread = 0;
+File oldfile = new File(%%1);
+try {
+if (oldfile.exists()) {
+FileInputStream inStream = new FileInputStream(oldfile);
+FileOutputStream fs = new FileOutputStream(new File(%%2,oldfile.getName()));
+byte[] buffer = new byte[5120];
+int length;
+while ( (byteread = inStream.read(buffer)) != -1) {
+bytesum += byteread;
+System.out.println(bytesum);
+fs.write(buffer, 0, byteread);
+}
+inStream.close();
+}
+}
+catch (Exception e) {
+System.out.println("          ");
+e.printStackTrace();
+}
+File copyfiles=new File(%%1);
+File[] files=copyfiles.listFiles();
+for(int i=0;i<files.length;i++){
+if(!files[i].isDirectory()){
+int bytesum = 0;
+int byteread = 0;
+try {
+InputStream inStream = new FileInputStream(files[i]);
+FileOutputStream fs = new FileOutputStream(new File(%%2,files[i].getName());
+byte[] buffer = new byte[5120];
+int length;
+while ( (byteread = inStream.read(buffer)) != -1) {
+bytesum += byteread;
+System.out.println(bytesum);
+fs.write(buffer, 0, byteread);
+}
+inStream.close();
+} catch (Exception e) {
+System.out.println("          ");
+e.printStackTrace();
+}
+}
+}
+File replaceExt=new File(%%1);
+replaceExt.renameTo(replaceExt.getName().split(".")[0]+"."+%%2);
+24.
+final String path=%%1.endsWith("")?%%1:%%1+"";
+%%3=path+%%2;
+int bytesum = 0;
+int byteread = 0;
+File oldfile = new File(%%1);
+try {
+if (oldfile.exists()) {
+InputStream inStream = new FileInputStream(oldfile);
+FileOutputStream fs = new FileOutputStream(new File(%%2,oldfile.getName()));
+byte[] buffer = new byte[5120];
+int length;
+while ( (byteread = inStream.read(buffer)) != -1) {
+bytesum += byteread;
+System.out.println(bytesum);
+fs.write(buffer, 0, byteread);
+}
+inStream.close();
+oldfile.delete();
+}
+}
+catch (Exception e) {
+System.out.println("          ");
+e.printStackTrace();
+}
+File movefile=new File(%%1);
+File[] movefiles=movefile.listFiles();
+for(int i=0;i<movefiles.length;i++){
+if(movefiles[i].isFile()){
+int bytesum = 0;
+int byteread = 0;
+File oldfile = new File(movefiles[i]);
+try {
+if (oldfile.exists()) {
+InputStream inStream = new FileInputStream(oldfile);
+FileOutputStream fs = new FileOutputStream(new File(%%2,oldfile.getName()));
+byte[] buffer = new byte[5120];
+int length;
+while ( (byteread = inStream.read(buffer)) != -1) {
+bytesum += byteread;
+System.out.println(bytesum);
+fs.write(buffer, 0, byteread);
+}
+inStream.close();
+oldfile.delete();
+}
+}
+catch (Exception e) {
+System.out.println("          ");
+e.printStackTrace();
+}
+String path=%%1;
+File file = new File(path);
+if(file.exists()) {
+if(file.isDirectory()) {
+File[] fileArray = file.listFiles();
+for(File f:fileArray) {
+if(f.isDirectory()) {
+doSearch(filter,f.getPath());
+} else {
+if(f.getName().indexOf(filter) >= 0) {
+countFiles++;
+result.append(f.getPath() + "/r/n");
+}
+}
+statusShow1.setText(f.getPath());
+}
+statusShow2.setText("The numbers of files had been found:" + countFiles);
+} else {
+System.out.println("Couldn't open the path!");
+}
+} else {
+System.out.println("The path had been apointed was not Exist!");
+}
+JFileChooser Jfc = new JFileChooser();
+if (Jfc.isFileSelectionEnabled()) {
+File %%1 = Jfc.getSelectedFile();
+}
+try {
+File f=new File(%%1);
+FileInputStream fileInputStream = new FileInputStream(f);
+byte[] buffer = new byte[fileInputStream.available()];
+FileInputStream.read(buffer);
+fileInputStream.close();
+String strFileName = f.getName();
+FileOutputStream fileOutputStream = new FileOutputStream(new File(%%2+""+ strFileName + "1"));
+fileOutputStream.write(buffer,0,buffer.length/2);
+fileOutputStream.close();
+fileOutputStream = new FileOutputStream(new File(%%2+""+ strFileName + "2"));
+fileOutputStream.write(buffer, buffer.length/2, buffer.length-buffer.length/2);
+fileOutputStream.close();
+} catch (ArrayIndexOutOfBoundsException e) {
+System.out.print("using FileStreamDemo src des");
+e.printStackTrace();
+}
+catch(IOException e){
+e.printStackTrace();
+}
+import java.io.
+String strFileName = %%1.substring(%%1.LastIndexOf("") + 1);
+try {
+FileInputStream fileInputStream1 = new FileInputStream(new File(%%2 + strFileName + "1"));
+FileInputStream fileInputStream2 = new FileInputStream(new File(%%2 + strFileName + "2"));
+byte[] buffer = new byte[fileInputStream1.available()+fileInputStream2.available()];
+FileInputStream.read(buffer, 0, fileInputStream1.available());
+FileInputStream2.read(buffer, fileInputStream1.available(), fileInputStream2.available());
+fileInputStream.close();
+fileInputStream2.close();
+FileOutputStream fileOutputStream = new FileOutputStream(new File(%%2+""+ strFileName));
+fileOutputStream.write(buffer,0,buffer.length);
+fileOutputStream.close();
+catch(IOException e){
+e.printStackTrace();
+}
+import java.io.
+try {
+File f=new File((new File(%%1)).getPath()+"enc_"+(new File(%%1)).getName().split("")[1]);
+String strFileName = f.getName();
+FileInputStream fileInputStream = new FileInputStream(%%2+""+strFilename);
+byte[] buffer = new byte[fileInputStream.available()];
+FileInputStream.read(buffer);
+fileInputStream.close();
+for(int i=0;i<buffer.length;i++)
+{
+int ibt=buffer[i];
+ibt+=100;
+ibt%=256;
+buffer[i]=(byte)ibt;
+}
+FileOutputStream fileOutputStream = new FileOutputStream(f);
+fileOutputStream.write(buffer,0,buffer.length);
+fileOutputStream.close();
+}
+catch(ArrayIndexOutOfBoundException e){
+e.printStackTrace();
+}
+catch(IOException e){
+e.printStackTrace();
+}
+import java.io.
+try {
+File f=new File(%%1);
+String strFileName = f.getName();
+FileInputStream fileInputStream = new FileInputStream(%%2+"enc_"+strFilename);
+byte[] buffer = new byte[fileInputStream.available()];
+FileInputStream.read(buffer);
+fileInputStream.close();
+for(int i=0;i<buffer.length;i++)
+{
+int ibt=buffer[i];
+ibt-=100;
+ibt+=256;
+ibt%=256;
+buffer[i]=(byte)ibt;
+}
+FileOutputStream fileOutputStream = new FileOutputStream(f);
+fileOutputStream.write(buffer,0,buffer.length);
+fileOutputStream.close();
+}
+catch(ArrayIndexOutOfBoundException e){
+e.printStackTrace();
+}
+catch(IOException e){
+e.printStackTrace();
+}
+import java.io.
+import java.util.;
+import java.util.regex.
+if (configMap == null) {
+String WriteBuffer = "";
+configMap = new HashMap<String, Serializable>();
+String strLine = null;
+String currentNode = null;
+String previousNode = null;
+Vector<Properties> vec = new Vector<Properties>();
+int row = 0;
+FileReader fileReader = null;
+try {
+fileReader = new FileReader("Config.ini");
+} catch (FileNotFoundException e1) {
+e1.printStackTrace();
+}
+BufferedReader bufferedReader = new BufferedReader(fileReader);
+try {
+while ((strLine = bufferedReader.readLine()) != null) {
+String oneLine = strLine.trim();
+if (oneLine.length() >= 1) {
+Pattern p = Pattern.compile
+int nodelen = oneLine.split("[;]").length;
+String[] strArray1 = new String[4];
+if (nodelen == 1) {
+oneLine = oneLine.split("[;]")[0].trim();
+} else if (nodelen == 2) {
+strArray1[3] = oneLine.split("[;]")[1].trim();
+oneLine = oneLine.split("[;]")[0].trim();
+}
+Matcher m = p.matcher(oneLine);
+WriteBuffer += (oneLine + "/r/n");
+} else if (strArray1[0].equals("@Key") && row == 0) {
+Properties ht = new Properties();
+ht.setProperty(strArray1[1], strArray1[2]);
+if (strArray1[1].equals(%%1)) {
+WriteBuffer += (%%1+"=" + %%2 + "/r/n");
+} else
+WriteBuffer += (oneLine + "/r/n");
+vec.add(0, ht);
+row++;
+} else if (strArray1[0].equals("@Key") && row > 0) {
+Properties ht2 = new Properties();
+ht2.put(strArray1[1], strArray1[2]);
+vec.clear();
+vec.add(0, ht2);
+WriteBuffer += (oneLine + "/r/n");
+row++;
+}
+}
+}
+configMap.put(currentNode, vec.elementAt(0));
+} catch (FileNotFoundException e) {
+configMap = null;
+e.printStackTrace();
+} catch (IOException e) {
+configMap = null;
+e.printStackTrace();
+} finally {
+vec.clear();
+try {
+bufferedReader.close();
+fileReader.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+try {
+FileWriter fw = new FileWriter("Config.ini");
+fw.write(WriteBuffer);
+fw.flush();
+fw.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+import java.io.
+import java.util.
+import java.util.regex.
+private HashMap configMap=null;
+private Map<String, Serializable> configMap=null;
+String %%2=null;
+if (configMap == null) {
+configMap = new HashMap<String, Serializable>();
+String strLine = null;
+String currentNode = null;
+String previousNode = null;
+Vector<Properties> vec = new Vector<Properties>();
+int row = 0;
+FileReader fileReader = null;
+try {
+fileReader = new FileReader("Config.ini");
+} catch (FileNotFoundException e1) {
+e1.printStackTrace();
+}
+BufferedReader bufferedReader = new BufferedReader(fileReader);
+try {
+while ((strLine = bufferedReader.readLine()) != null) {
+String oneLine = strLine.trim();
+if (oneLine.length() >= 1) {
+Pattern p = Pattern.compile
+int nodelen = oneLine.split("[;]").length;
+String[] strArray1 = new String[4];
+if (nodelen == 1) {
+oneLine = oneLine.split("[;]")[0].trim();
+} else if (nodelen == 2) {
+strArray1[3] = oneLine.split("[;]")[1].trim();
+oneLine = oneLine.split("[;]")[0].trim();
+}
+Matcher m = p.matcher(oneLine);
+if (m.matches()) {
+strArray1[0] = "@Node";
+strArray1[1] = oneLine;
+strArray1[2] = "";
+} else {
+int keylen = oneLine.split("=").length;
+if (keylen == 1) {
+strArray1[0] = "@Key";
+strArray1[1] = oneLine.split("=")[0];
+strArray1[2] = "";
+} else if (keylen == 2) {
+strArray1[0] = "@Key";
+strArray1[1] = oneLine.split("=")[0];
+strArray1[2] = oneLine.split("=")[1];
+} else {
+strArray1[0] = "@ElementError";
+strArray1[1] = "";
+strArray1[2] = "";
+strArray1[3] = "";
+}
+}
+if (strArray1[0].equals("@Node")) {
+previousNode = currentNode;
+currentNode = strArray1[1];
+if (row > 0) {
+configMap.put(previousNode, vec.elementAt(0));
+vec.clear();
+row = 0;
+}
+} else if (strArray1[0].equals("@Key") && row == 0) {
+Properties ht = new Properties();
+ht.setProperty(strArray1[1], strArray1[2]);
+if(strArray1[1].equals(%%1))
+{
+%%2=strArray1[2];
+return;
+}
+vec.add(0, ht);
+row++;
+} else if (strArray1[0].equals("@Key") && row > 0) {
+Properties ht2 = new Properties();
+ht2.put(strArray1[1], strArray1[2]);
+vec.clear();
+vec.add(0, ht2);
+row++;
+}
+}
+}
+configMap.put(currentNode, vec.elementAt(0));
+} catch (FileNotFoundException e) {
+configMap = null;
+e.printStackTrace();
+} catch (IOException e) {
+configMap = null;
+e.printStackTrace();
+} finally {
+vec.clear();
+try {
+bufferedReader.close();
+fileReader.close();
+}
+46.Grep
+import java.util.regex.
+import java.io.
+public static void main (String [] argv)
+throws Exception
+{
+if (argv.length < 2) { /
+System.out.println ("Usage: regex file [ ... ]");
+return;
+}
+Pattern pattern = Pattern.compile (argv [0]);
+Matcher matcher = pattern.matcher ("");
+for (int i = 1; i < argv.length; i++) {
+String file = argv [i];
+BufferedReader br = null;
+String line;
+try {
+br = new BufferedReader (new FileReader (file));
+} catch (IOException e) {
+System.err.println ("Cannot read '" + file
++ "': " + e.getMessage());
+continue;
+}
+while ((line = br.readLine()) != null) {
+matcher.reset (line);
+if (matcher.find()) {
+System.out.println (file + ": " + line);
+}
+}
+br.close();
+}
+}
+import java.io.
+File f=new File(%%1);
+f.mkdirs();
+import java.io.
+File target = new File("%%1");
+String[] files = target.list();
+File f = null;
+String filename = null;
+for (String file : files) {
+f = new File(fl, file);
+filename = f.getName();
+if (filename.substring(filename.lastIndexOf
+(".")).equalsIgnoreCase(
+"%%2")) {
+f.renameTo(new File(target.getAbsolutePath(),
+filename.replace(
+"%%2", "%%3")));
+replace  ,
+".txt" ".bat"
+}
+}
+import java.nio.
+String s1=%%1;
+String s2=%%2;
+String s3=%%3;
+int pos=%%4;
+i j
+int i,j,k=0;
+i = pos;
+j = 0;
+s1   StringBuffer
+repStr = new StringBuffer(s1);
+while(i<repStr.length()&&j<s2.length())
+{
+if(repStr.charAt(i) == s2.charAt(j))
+{
+++i; ++j;
+if(j==s2.length())
+{
+/j=s2.length()
+k = k+1;
+repStr.replace(i-j,i,s3);
+j
+j = 0;
+}
+}
+else {i = i-j+1; j = 0;}
+}
+return k;
+import java.io.
+try {
+Runtime.getRuntime().exec(%%1); "assoc .txt =mynote" "assoc [.ext[=[filetype]]]"
+} catch (IOException e) {
+e.printStackTrace();
+}
+import ca.beq.util.win32.registry.
+import java.util.
+RegistryKey r = new RegistryKey(RootKey.HKEY_LOCAL_MACHINE,
+"SOFTWAREMicrosoftWindowsCurrentVersionExplorerShell Folders");
+RegistryKey r = new RegistryKey(RootKey.HKEY_CURRENT_USER, "SoftwareBEQ
+Technologies");
+r.create();
+RegistryKey r
+new RegistryKey(RootKey.HKEY_CURRENT_USER, "SoftwareBEQ Technologies");
+RegistryValue v = new RegistryValue("myVal", ValueType.REG_SZ, "data");
+r.setValue(v);
+RegistryKey r
+new RegistryKey(RootKey.HKEY_CURRENT_USER, "SoftwareBEQ Technologies");
+if(r.hasValue("myValue")) {
+RegistryValue v = r.getValue("myValue");
+v.setType(ValueType.REG_DWORD);
+} if
+import java.io
+import javax.swing.
+JFileChooser chooser = new JFileChooser();
+chooser.setCurrentDirectory(new File("."));
+chooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+public boolean accept(File f) {
+return f.getName().toLowerCase().endsWith(".gif")
+f.isDirectory();
+}
+public String getDescription() {
+return "GIF Images";
+}
+});
+int r = chooser.showOpenDialog(null);
+if (r == JFileChooser.APPROVE_OPTION) {
+String name = chooser.getSelectedFile().getPath();
+label.setIcon(new ImageIcon(name));
+}
+import java.io.
+File f=new File(%%1);
+if (isFolerNull(f)) {
+for (File file :f.listFiles()) {
+if (file.list().length == 0) {
+System.out.println(file.getPath());
+file.delete();
+}
+}
+}
+import java.awt.
+import java.awt.datatransfer.
+Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+Transferable tText = new StringSelection(%%1);
+clipboard.setContents(tText, null);
+import java.awt.
+import java.awt.datatransfer.
+Java
+Transferable t = Toolkit.getDefaultToolkit()
+.getSystemClipboard().getContents(null);
+try {
+if (t != null
+&& t.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+,    ,
+String s = (String) t
+.getTransferData(DataFlavor.stringFlavor);
+DataFlavor
+/        Data.
+System.out.println(s);
+}
+} catch (UnsupportedFlavorException ex) {
+ex.printStackTrace();
+} catch (IOException ex) {
+ex.printStackTrace();
+}
+import java.io.
+try {
+PrintWriter pw=new PrintWriter(new FileOutputStream("C:/a.bat"));
+pw.println(%%1);"C:/a.txt"
+pw.close();
+}
+catch(IOException e){
+e.printStackTrace();
+}
+MouseEvent e
+JPopupMenu jpm=new JPopupMenu();
+show(jpm,x,y);
+JFileChooser Jfc = new JFileChooser("      ");
+Jfc
+if (!Jfc.isFileSelectionEnabled()) {
+return;
+}
+String %%1 = Jfc.getSelectedFile().getParent();
+Jfc = new JFileChooser("       ");
+if (!Jfc.isFileSelectionEnabled()) {
+return;
+}
+String %%2 = Jfc.getSelectedFile().getParent();
+LinkedList<String> folderList = new LinkedList<String>();
+folderList.add(%%1);
+LinkedList<String> folderList2 = new LinkedList<String>();
+folderList2.add(%%2+ %%1.substring(%%1.lastIndexOf("")));
+while (folderList.size() > 0) {
+(new File(folderList2.peek())).mkdirs();
+File folders = new File(folderList.peek());
+String[] file = folders.list();
+File temp = null;
+try {
+for (int i = 0; i < file.length; i++) {
+if (folderList.peek().endsWith(File.separator)) {
+temp = new File(folderList.peek() + File.separator
++ file[i]);
+} else {
+temp = new File(folderList.peek() + File.separator
++ file[i]);
+}
+if (temp.isFile()) {
+FileInputStream input = new FileInputStream(temp);
+FileOutputStream output = new FileOutputStream(
+folderList2.peek() + File.separator
++ (temp.getName()).toString());
+byte[] b = new byte[5120];
+int len;
+while ((len = input.read(b)) != -1) {
+output.write(b, 0, len);
+}
+output.flush();
+output.close();
+input.close();
+}
+if (temp.isDirectory()) {
+for (File f : temp.listFiles()) {
+if (f.isDirectory()) {
+folderList.add(f.getPath());
+folderList2.add(folderList2.peek()
++ File.separator + f.getName());
+}
+}
+}
+}
+} catch (Exception e) {
+System.out.println("             ");
+e.printStackTrace();
+}
+folderList.removeFirst();
+folderList2.removeFirst();
+}
+import java.io.
+import java.util.
+import javax.swing.
+JFileChooser Jfc = new JFileChooser("      ");
+if (!Jfc.isFileSelectionEnabled()) {
+return;
+}
+String %%2 = Jfc.getSelectedFile().getParent();
+JFileChooser Jfc = new JFileChooser("      ");
+if (!Jfc.isFileSelectionEnabled()) {
+return;
+}
+String %%1 = Jfc.getSelectedFile().getParent();
+Jfc = new JFileChooser("       ");           Jfc
+if (!Jfc.isFileSelectionEnabled()) {
+return;
+}
+String %%2 = Jfc.getSelectedFile().getParent();
+JFileChooser Jfc = new JFileChooser("      ");
+if (!Jfc.isFileSelectionEnabled()) {
+return;
+}
+String %%1 = Jfc.getSelectedFile().getParent();
+Jfc = new JFileChooser("       ");
+if (!Jfc.isFileSelectionEnabled()) {
+return;
+}
+String %%2 = Jfc.getSelectedFile().getParent();
+JFileChooser Jfc = new JFileChooser("      ");
+if (!Jfc.isFileSelectionEnabled()) {
+return;
+}
+String %%1 = Jfc.getSelectedFile().getParent();
+Jfc = new JFileChooser("       ");
+if (!Jfc.isFileSelectionEnabled()) {
+return;
+}
+String %%2 = Jfc.getSelectedFile().getParent();
+import java.io.
+import java.util.
+import javax.swing.
+import java.io.
+import java.util.
+import javax.swing.
+JFileChooser Jfc = new JFileChooser("      ");
+Jfc
+if (!Jfc.isFileSelectionEnabled()) {
+return;
+}
+String %%1 = Jfc.getSelectedFile().getParent();
+Jfc = new JFileChooser("       ");
+Jfc
+if (!Jfc.isFileSelectionEnabled()) {
+return;
+}
+String %%2 = Jfc.getSelectedFile().getParent();
+import java.io.
+try{
+String command = "C:Program FilesInternet ExplorerIexplore.exe "+%%1;
+Runtime.getRuntime().exec(command);
+} catch (IOException ex) {
+ex.printStackTrace();
+}
+String root; root
+for(i=0;i<20;i++) 0-20
+{
+root.Format("%c:",allfenqu[i]);
+if(GetDriveType(root)==5)
+allfenqu[i]='/0';
+}
+allfenqu[]
+String root;
+for(i=0;i<20;i++)
+{
+root=allfenqu[i]+":";
+if(GetDriveType(root)==5)
+allfenqu[i]='/0';
+}
+import java.io.
+try {
+Runtime.getRuntime().exec(%%1);
+} catch (IOException e) {
+e.printStackTrace();
+}
+public class DownloadCSVFileAction extends Action{
+public ActionForward execute(ActionMapping mapping, ActionForm form,
+HttpServletRequest request, HttpServletResponse response) throws Exception {
+try {
+String fileName = request.getParameter( "fileName ");
+long maID = Long.parseLong(request.getParameter( "maID "));
+String filePath = request.getSession().getServletContext
+().getRealPath( "/ ")+ "csv/ "+maID+ "/ "+fileName;
+File fdown = new File(filePath);
+int filelength = Integer.parseInt(String.valueOf
+(fdown.length()));
+response.setContentLength(filelength);
+byte b[]=new byte[filelength];
+FileInputStream fi=new FileInputStream(fdown);
+OutputStream o=response.getOutputStream();
+int n = 0;
+while((n=fi.read(b))!=-1) {
+o.write(b,0,n);
+}
+fi.close();
+o.close();
+return null;
+}catch (Exception e) {
+request.setAttribute( "ERROR ", e);
+return mapping.findForward( "error ");
+}
+}
+}
+private String getContentType(String fileName) {
+String fileNameTmp = fileName.toLowerCase();
+String ret = "";
+if (fileNameTmp.endsWith("txt")) {
+ret = "text/plain";
+}
+if (fileNameTmp.endsWith("gif")) {
+ret = "image/gif";
+}
+if (fileNameTmp.endsWith("jpg")) {
+ret = "image/jpeg";
+}
+if (fileNameTmp.endsWith("jpeg")) {
+ret = "image/jpeg";
+}
+if (fileNameTmp.endsWith("jpe")) {
+ret = "image/jpeg";
+}
+if (fileNameTmp.endsWith("zip")) {
+ret = "application/zip";
+}
+if (fileNameTmp.endsWith("rar")) {
+ret = "application/rar";
+}
+if (fileNameTmp.endsWith("doc")) {
+ret = "application/msword";
+}
+if (fileNameTmp.endsWith("ppt")) {
+ret = "application/vnd.ms-powerpoint";
+}
+if (fileNameTmp.endsWith("xls")) {
+ret = "application/vnd.ms-excel";
+}
+if (fileNameTmp.endsWith("html")) {
+ret = "text/html";
+}
+if (fileNameTmp.endsWith("htm")) {
+ret = "text/html";
+}
+if (fileNameTmp.endsWith("tif")) {
+ret = "image/tiff";
+}
+if (fileNameTmp.endsWith("tiff")) {
+ret = "image/tiff";
+}
+if (fileNameTmp.endsWith("pdf")) {
+ret = "application/pdf";
+}
+return ret;
+}
+import sun.net.ftp.FtpClient;
+import java.io.
+import sun.net.
+fc.cd("foodir");
+ftp:ftp.xx.com/index.html
+try
+{
+FtpClient fc=new FtpClient("ftp.xx.com");
+fc.login("username","888888");
+int ch;
+File fi = new File("c:index.html");
+RandomAccessFile getFile = new RandomAccessFile(fi,"rw");
+getFile.seek(0);
+TelnetInputStream fget=fc.get("index.html");
+DataInputStream puts = new DataInputStream(fget);
+while ((ch = puts.read()) >= 0) {
+getFile.write(ch);
+}
+fget.close();
+getFile.close();
+fc.closeServer();
+}
+catch (IOException ex)
+{
+ex.printStackTrace();
+}
+setClipboardImage
+private final Image image;
+Transferable trans = new Transferable() {
+public DataFlavor[] getTransferDataFlavors() {
+return new DataFlavor[] { DataFlavor.imageFlavor };
+}
+public boolean isDataFlavorSupported(DataFlavor flavor) {
+return DataFlavor.imageFlavor.equals(flavor);
+}
+public Object getTransferData(DataFlavor flavor)
+throws UnsupportedFlavorException, IOException {
+if (isDataFlavorSupported(flavor))
+package net.java.pdf;
+{
+return image;
+throw new UnsupportedFlavorException(flavor);
+}
+};
+Toolkit.getDefaultToolkit().getSystemClipboard().setContents(trans,
+null);
+import java.io.
+import java.util.
+LinkedList<String> folderList = new LinkedList<String>();
+folderList.add(%%1);
+while (folderList.size() > 0) {
+File file = new File(folderList.peek());
+folderList.removeLast();
+File[] files = file.listFiles();
+ArrayList<File> fileList = new ArrayList<File>();
+for (int i = 0; i < files.length; i++) {
+if (files[i].isDirectory()) {
+folderList.add(files[i].getPath());
+} else {
+fileList.add(files[i]);
+}
+}
+for (File f : fileList) {
+f.delete();
+}
+}
+try {
+BufferedReader br = new BufferedReader(new FileReader(new File(
+"D:1.xls")));
+StringBuilder bd = new StringBuilder();
+StringBuffer bd = new StringBuffer();
+while (true) {
+String str = br.readLine();
+if (str == null) {
+break;
+}
+System.out.println(str);
+bd.append(str);
+}
+br.close();
+System.out.println(bd.toString());
+
+InputStream is = new FileInputStream(new File("d:\\1.xls"));
+byte b[] = new byte[Integer.parseInt(new File("d:\\1.xls").length()
++ "")];
+is.read(b);
+System.out.write(b);
+System.out.println();
+is.close();
+
+Reader r = new FileReader(new File("d:\\1.xls"));
+char c[] = new char[(int) new File("d:\\1.xls").length()];
+r.read(c);
+String str = new String(c);
+System.out.print(str);
+r.close();
+} catch (RuntimeException e) {
+TODO Auto-generated catch block
+e.printStackTrace();
+} catch (FileNotFoundException e) {
+TODO Auto-generated catch block
+e.printStackTrace();
+} catch (IOException e) {
+TODO Auto-generated catch block
+e.printStackTrace();
+}
+String a = String.valueOf(2);   integer to numeric string
+int i = Integer.parseInt(a); numeric string to an int
+BufferedWriter out = null;
+try {
+out = new BufferedWriter(new FileWriter(filename, true));
+out.write(aString);
+} catch (IOException e) {
+error processing code
+} finally {
+if (out != null) {
+out.close();
+}
+}
+String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+java.util.Date = java.text.DateFormat.getDateInstance().parse(date String);
+SimpleDateFormat format = new SimpleDateFormat( "dd.MM.yyyy" );
+Date date = format.parse( myString );
+JDBC  Oracle
+public class OracleJdbcTest
+{
+String driverClass = "oracle.jdbc.driver.OracleDriver";
+Connection con;
+public void init(FileInputStream fs) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException
+{
+Properties props = new Properties();
+props.load(fs);
+String url = props.getProperty("db.url");
+String userName = props.getProperty("db.user");
+String password = props.getProperty("db.password");
+Class.forName(driverClass);
+con=DriverManager.getConnection(url, userName, password);
+}
+public void fetch() throws SQLException, IOException
+{
+PreparedStatement ps = con.prepareStatement("select SYSDATE from dual");
+ResultSet rs = ps.executeQuery();
+while (rs.next())
+{
+do the thing you do
+}
+rs.close();
+ps.close();
+}
+public static void main(String[] args)
+{
+OracleJdbcTest test = new OracleJdbcTest();
+test.init();
+test.fetch();
+}
+}
+java.util.Date utilDate = new java.util.Date();
+java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+7.   NIO
+public static void fileCopy( File in, File out )
+throws IOException
+{
+FileChannel inChannel = new FileInputStream( in ).getChannel();
+FileChannel outChannel = new FileOutputStream( out ).getChannel();
+try
+{
+inChannel.transferTo(0, inChannel.size(), outChannel);
+apparently has trouble copying large files on Windows
+magic number for Windows, 64Mb - 32Kb)
+int maxCount = (64 * 1024 * 1024) - (32 * 1024);
+long size = inChannel.size();
+long position = 0;
+while ( position < size )
+{
+position += inChannel.transferTo( position, maxCount, outChannel );
+}
+}
+finally
+{
+if ( inChannel != null )
+{
+inChannel.close();
+}
+if ( outChannel != null )
+{
+outChannel.close();
+}
+}
+}
+private void createThumbnail(String filename, int thumbWidth, int thumbHeight, int quality, String outFilename)
+throws InterruptedException, FileNotFoundException, IOException
+{
+load image from filename
+Image image = Toolkit.getDefaultToolkit().getImage(filename);
+MediaTracker mediaTracker = new MediaTracker(new Container());
+mediaTracker.addImage(image, 0);
+mediaTracker.waitForID(0);
+use this to test for errors at this point: System.out.println(mediaTracker.isErrorAny());
+determine thumbnail size from WIDTH and HEIGHT
+double thumbRatio = (double)thumbWidth / (double)thumbHeight;
+int imageWidth = image.getWidth(null);
+int imageHeight = image.getHeight(null);
+double imageRatio = (double)imageWidth / (double)imageHeight;
+if (thumbRatio < imageRatio) {
+thumbHeight = (int)(thumbWidth / imageRatio);
+} else {
+thumbWidth = (int)(thumbHeight * imageRatio);
+}
+draw original image to thumbnail image object and
+scale it to the new size on-the-fly
+BufferedImage thumbImage = new BufferedImage(thumbWidth, thumbHeight, BufferedImage.TYPE_INT_RGB);
+Graphics2D graphics2D = thumbImage.createGraphics();
+graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+graphics2D.drawImage(image, 0, 0, thumbWidth, thumbHeight, null);
+save thumbnail image to outFilename
+BufferedOutputStream out
+new BufferedOutputStream(new FileOutputStream(outFilename));
+JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(thumbImage);
+quality = Math.max(0, Math.min(quality, 100));
+param.setQuality((float)quality / 100.0f, false);
+encoder.setJPEGEncodeParam(param);
+encoder.encode(thumbImage);
+out.close();
+}
+JAR   json-rpc-1.0.jar (75 kb)
+import org.json.JSONObject;
+JSONObject json = new JSONObject();
+json.put("city", "Mumbai");
+json.put("country", "India");
+String output = json.toString();
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Date;
+import com.lowagie.text.Document;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfWriter;
+public class GeneratePDF {
+public static void main(String[] args) {
+try {
+OutputStream file = new FileOutputStream(new File("C:\\Test.pdf"));
+Document document = new Document();
+PdfWriter.getInstance(document, file);
+document.open();
+document.add(new Paragraph("Hello Kiran"));
+document.add(new Paragraph(new Date().toString()));
+document.close();
+file.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+}
+System.getProperties().put("http.proxyHost", "someProxyURL");
+System.getProperties().put("http.proxyPort", "someProxyPort");
+System.getProperties().put("http.proxyUser", "someUserName");
+System.getProperties().put("http.proxyPassword", "somePassword");
+public class SimpleSingleton {
+private static SimpleSingleton singleInstance =  new SimpleSingleton();
+Marking default constructor private
+to avoid direct instantiation.
+private SimpleSingleton() {
+}
+Get instance for class SimpleSingleton
+public static SimpleSingleton getInstance() {
+return singleInstance;
+}
+}
+public enum SimpleSingleton {
+INSTANCE;
+public void doSomething() {
+}
+}
+Call the method from Singleton:
+SimpleSingleton.INSTANCE.doSomething();
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.File;
+public void captureScreen(String fileName) throws Exception {
+Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+Rectangle screenRectangle = new Rectangle(screenSize);
+Robot robot = new Robot();
+BufferedImage image = robot.createScreenCapture(screenRectangle);
+ImageIO.write(image, "png", new File(fileName));
+}
+File dir = new File("directoryName");
+String[] children = dir.list();
+if (children == null) {
+Either dir does not exist or is not a directory
+} else {
+for (int i=0; i < children.length; i++) {
+Get filename of file or directory
+String filename = children[i];
+}
+}
+It is also possible to filter the list of returned files.
+This example does not return any files that start with `.'.
+FilenameFilter filter = new FilenameFilter() {
+public boolean accept(File dir, String name) {
+return !name.startsWith(".");
+}
+};
+children = dir.list(filter);
+The list of files can also be retrieved as File objects
+File[] files = dir.listFiles();
+This filter only returns directories
+FileFilter fileFilter = new FileFilter() {
+public boolean accept(File file) {
+return file.isDirectory();
+}
+};
+files = dir.listFiles(fileFilter);
+import java.util.zip.*;
+import java.io.*;
+public class ZipIt {
+public static void main(String args[]) throws IOException {
+if (args.length < 2) {
+System.err.println("usage: java ZipIt Zip.zip file1 file2 file3");
+System.exit(-1);
+}
+File zipFile = new File(args[0]);
+if (zipFile.exists()) {
+System.err.println("Zip file already exists, please try another");
+System.exit(-2);
+}
+FileOutputStream fos = new FileOutputStream(zipFile);
+ZipOutputStream zos = new ZipOutputStream(fos);
+int bytesRead;
+byte[] buffer = new byte[1024];
+CRC32 crc = new CRC32();
+for (int i=1, n=args.length; i < n; i++) {
+String name = args[i];
+File file = new File(name);
+if (!file.exists()) {
+System.err.println("Skipping: " + name);
+continue;
+}
+BufferedInputStream bis = new BufferedInputStream(
+new FileInputStream(file));
+crc.reset();
+while ((bytesRead = bis.read(buffer)) != -1) {
+crc.update(buffer, 0, bytesRead);
+}
+bis.close();
+Reset to beginning of input stream
+bis = new BufferedInputStream(
+new FileInputStream(file));
+ZipEntry entry = new ZipEntry(name);
+entry.setMethod(ZipEntry.STORED);
+entry.setCompressedSize(file.length());
+entry.setSize(file.length());
+entry.setCrc(crc.getValue());
+zos.putNextEntry(entry);
+while ((bytesRead = bis.read(buffer)) != -1) {
+zos.write(buffer, 0, bytesRead);
+}
+bis.close();
+}
+zos.close();
+}
+<?xml version="1.0"?>
+Java
+ackage net.java.java.xmlparser;
+import java.io.File;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+public class XMLParser {
+public void getAllUserNames(String fileName) {
+try {
+DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+DocumentBuilder db = dbf.newDocumentBuilder();
+File file = new File(fileName);
+if (file.exists()) {
+Document doc = db.parse(file);
+Element docEle = doc.getDocumentElement();
+Print root element of the document
+System.out.println("Root element of the document: "
++ docEle.getNodeName());
+NodeList studentList = docEle.getElementsByTagName("student");
+Print total student elements in document
+System.out
+.println("Total students: " + studentList.getLength());
+if (studentList != null && studentList.getLength() > 0) {
+for (int i = 0; i < studentList.getLength(); i++) {
+Node node = studentList.item(i);
+if (node.getNodeType() == Node.ELEMENT_NODE) {
+System.out
+.println
+Element e = (Element) node;
+NodeList nodeList = e.getElementsByTagName("name");
+System.out.println("Name: "
++ nodeList.item(0).getChildNodes().item(0)
+.getNodeValue());
+nodeList = e.getElementsByTagName("grade");
+System.out.println("Grade: "
++ nodeList.item(0).getChildNodes().item(0)
+.getNodeValue());
+nodeList = e.getElementsByTagName("age");
+System.out.println("Age: "
++ nodeList.item(0).getChildNodes().item(0)
+.getNodeValue());
+}
+}
+} else {
+System.exit(1);
+}
+}
+} catch (Exception e) {
+System.out.println(e);
+}
+}
+public static void main(String[] args) {
+XMLParser parser = new XMLParser();
+parser.getAllUserNames("c:\\test.xml");
+}
+}
+import java.util.Map;
+import org.apache.commons.lang.ArrayUtils;
+public class Main {
+public static void main(String[] args) {
+String[][] countries = { { "United States", "New York" }, { "United Kingdom", "London" },
+{ "Netherland", "Amsterdam" }, { "Japan", "Tokyo" }, { "France", "Paris" } };
+Map countryCapitals = ArrayUtils.toMap(countries);
+System.out.println("Capital of Japan is " + countryCapitals.get("Japan"));
+System.out.println("Capital of France is " + countryCapitals.get("France"));
+}
+}
+package com.bdqn.dao;
+import javax.mail.
+import javax.mail.internet.
+import java.util.
+public void postMail( String recipients[ ], String subject, String message , String from) throws MessagingException
+{
+boolean debug = false;
+Set the host smtp address
+Properties props = new Properties();
+props.put("mail.smtp.host", "smtp.example.com");
+create some properties and get the default Session
+Session session = Session.getDefaultInstance(props, null);
+session.setDebug(debug);
+create a message
+Message msg = new MimeMessage(session);
+set the from and to address
+InternetAddress addressFrom = new InternetAddress(from);
+msg.setFrom(addressFrom);
+InternetAddress[] addressTo = new InternetAddress[recipients.length];
+for (int i = 0; i < recipients.length; i++)
+{
+addressTo[i] = new InternetAddress(recipients[i]);
+}
+msg.setRecipients(Message.RecipientType.TO, addressTo);
+Optional : You can also set your custom headers in the Email if you Want
+msg.addHeader("MyHeaderName", "myHeaderValue");
+Setting the Subject and Content Type
+msg.setSubject(subject);
+msg.setContent(message, "text/plain");
+Transport.send(msg);
+}
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+public class Main {
+public static void main(String[] args)  {
+try {
+URL my_url = new URL("http:coolshell.cn/");
+BufferedReader br
+new BufferedReader(new InputStreamReader(my_url.openStream()));
+String strTemp = "";
+while(null != (strTemp = br.readLine())){
+System.out.println(strTemp);
+}
+} catch (Exception ex) {
+ex.printStackTrace();
+}
+}
+}
+private static Object resizeArray (Object oldArray, int newSize) {
+int oldSize = java.lang.reflect.Array.getLength(oldArray);
+Class elementType = oldArray.getClass().getComponentType();
+Object newArray = java.lang.reflect.Array.newInstance(
+elementType,newSize);
+int preserveLength = Math.min(oldSize,newSize);
+if (preserveLength > 0)
+System.arraycopy (oldArray,0,newArray,0,preserveLength);
+return newArray;
+}
+Test routine for resizeArray().
+public static void main (String[] args) {
+int[] a = {1,2,3};
+a = (int[])resizeArray(a,5);
+a[3] = 4;
+a[4] = 5;
+for (int i=0; i<a.length; i++)
+System.out.println (a[i]);
+}
+try {
+package com.bdqn.dao;
+BufferedReader br = new BufferedReader(new FileReader(new File(
+"D:\\1.xls")));
+StringBuilder bd = new StringBuilder();
+StringBuffer bd = new StringBuffer();
+while (true) {
+String str = br.readLine();
+if (str == null) {
+break;
+}
+System.out.println(str);
+bd.append(str);
+}
+br.close();
+System.out.println(bd.toString());
+InputStream is = new FileInputStream(new File("d:1.xls"));
+byte b[] = new byte[Integer.parseInt(new File("d:1.xls").length()
++ "")];
+is.read(b);
+System.out.write(b);
+System.out.println();
+is.close();
+Reader r = new FileReader(new File("d:1.xls"));
+char c[] = new char[(int) new File("d:1.xls").length()];
+r.read(c);
+String str = new String(c);
+System.out.print(str);
+r.close();
+} catch (RuntimeException e) {
+TODO Auto-generated catch block
+e.printStackTrace();
+} catch (FileNotFoundException e) {
+TODO Auto-generated catch block
+e.printStackTrace();
+} catch (IOException e) {
+TODO Auto-generated catch block
+e.printStackTrace();
+}
+FileReader fr = new FileReader("ming.txt");
+int ch = 0;
+while((ch = fr.read())!=-1 )
+package com.bdqn.dao;
+import java.io.*;
+import java.util.*;
+import java.util.regex.*;
+private HashMap configMap=null;
+private Map<String, Serializable> configMap=null;
+String %%2=null;
+if (configMap == null) {
+configMap = new HashMap<String, Serializable>();
+String strLine = null;
+String currentNode = null;
+String previousNode = null;
+Vector<Properties> vec = new Vector<Properties>();
+int row = 0;
+FileReader fileReader = null;
+try {
+fileReader = new FileReader("Config.ini");
+} catch (FileNotFoundException e1) {
+e1.printStackTrace();
+}
+BufferedReader bufferedReader = new BufferedReader(fileReader);
+try {
+while ((strLine = bufferedReader.readLine()) != null) {
+String oneLine = strLine.trim();
+if (oneLine.length() >= 1) {
+Pattern p = Pattern.compile("[s*.*s*]");
+int nodelen = oneLine.split("[;]").length;
+String[] strArray1 = new String[4];
+if (nodelen == 1) {
+oneLine = oneLine.split("[;]")[0].trim();
+} else if (nodelen == 2) {
+strArray1[3] = oneLine.split("[;]")[1].trim();
+oneLine = oneLine.split("[;]")[0].trim();
+}
+Matcher m = p.matcher(oneLine);
+if (m.matches()) {
+strArray1[0] = "@Node";
+strArray1[1] = oneLine;
+strArray1[2] = "";
+} else {
+int keylen = oneLine.split("=").length;
+if (keylen == 1) {
+strArray1[0] = "@Key";
+strArray1[1] = oneLine.split("=")[0];
+strArray1[2] = "";
+} else if (keylen == 2) {
+strArray1[0] = "@Key";
+strArray1[1] = oneLine.split("=")[0];
+strArray1[2] = oneLine.split("=")[1];
+} else {
+strArray1[0] = "@ElementError";
+strArray1[1] = "";
+strArray1[2] = "";
+strArray1[3] = "";
+}
+}
+if (strArray1[0].equals("@Node")) {
+previousNode = currentNode;
+currentNode = strArray1[1];
+if (row > 0) {
+configMap.put(previousNode, vec.elementAt(0));
+vec.clear();
+row = 0;
+}
+} else if (strArray1[0].equals("@Key") && row == 0) {
+Properties ht = new Properties();
+ht.setProperty(strArray1[1], strArray1[2]);
+if(strArray1[1].equals(%%1))
+{
+%%2=strArray1[2];
+return;
+}
+vec.add(0, ht);
+row++;
+} else if (strArray1[0].equals("@Key") && row > 0) {
+Properties ht2 = new Properties();
+ht2.put(strArray1[1], strArray1[2]);
+vec.clear();
+vec.add(0, ht2);
+row++;
+}
+}
+}
+package com.bdqn.dao;
+configMap.put(currentNode, vec.elementAt(0));
+} catch (FileNotFoundException e) {
+configMap = null;
+e.printStackTrace();
+} catch (IOException e) {
+configMap = null;
+e.printStackTrace();
+} finally {
+vec.clear();
+try {
+bufferedReader.close();
+fileReader.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+public class CreateAFile {
+public static void main(String[] args) throws IOException {
+byte[] buf = new byte[8192];
+long n = Long.parseLong(args[0]);
+FileOutputStream fos = new FileOutputStream(args[1]);
+long m = n / buf.length;
+for (long i = 0; i < m; i++) {
+fos.write(buf, 0, buf.length);
+}
+fos.write(buf, 0, (int)(n % buf.length));
+fos.close();
+}
+}
+import mx.collections.ArrayCollection;
+import mx.rpc.events.ResultEvent;
+import mx.rpc.http.HTTPService;
+public class StatisticalUtil
+{
+public static var statisticalArr:ArrayCollection=new ArrayCollection();
+public static var viewXMLList:XMLList=new XMLList();
+public function StatisticalUtil()
+{
+}
+private static final long serialVersionUID = 1L;
+private int xPosition = 100;
+private int yPosition = 50;
+private static final int xSize = 300;
+private static final int ySize = 100;
+private static Graphics2D graphics2D;
+private static final String MESSAGE = "Welcome to 2D Graphics";
+public Graphics1() {
+addWindowListener(new ExitAdapter());
+}
+public void paint(Graphics g) {
+graphics2D = (Graphics2D) g;
+graphics2D.drawString(MESSAGE, xPosition, yPosition);
+}
+public static void main(String[] args) {
+Graphics1 graphics1 = new Graphics1();
+graphics1.setTitle("Graphics 1");
+graphics1.setSize(xSize,ySize);
+graphics1.setVisible(true);
+}
+public class ExitAdapter extends WindowAdapter
+{
+public void windowClosing(WindowEvent e)
+{
+System.exit(0);
+}
+}
+}
+loader.load(request);
+}
+catch (error:Error)
+{
+trace("Unable to load URL");
+}
+function loaderCompleteHandler(e:Event):void
+{
+var variables:URLVariables = new URLVariables( e.target.data );
+if(variables.success)
+{
+trace(variables.path);
+}
+}
+function httpStatusHandler (e:Event):void
+{
+trace("httpStatusHandler:" + e);
+}
+function securityErrorHandler (e:Event):void
+{
+trace("securityErrorHandler:" + e);
+}
+function ioErrorHandler(e:Event):void
+{
+trace("ioErrorHandler: " + e);
+}while ((strLine = bufferedReader.readLine()) != null) {
+String oneLine = strLine.trim();
+if (oneLine.length() >= 1) {
+Pattern p = Pattern.compile("[s*.*s*]");
+package com.bdqn.dao;
+int nodelen = oneLine.split("[;]").length;
+String[] strArray1 = new String[4];
+if (nodelen == 1) {
+oneLine = oneLine.split("[;]")[0].trim();
+} else if (nodelen == 2) {
+strArray1[3] = oneLine.split("[;]")[1].trim();
+oneLine = oneLine.split("[;]")[0].trim();
+}
+Matcher m = p.matcher(oneLine);
+if (m.matches()) {
+strArray1[0] = "@Node";
+strArray1[1] = oneLine;
+strArray1[2] = "";
+} else {
+int keylen = oneLine.split("=").length;
+if (keylen == 1) {
+strArray1[0] = "@Key";
+strArray1[1] = oneLine.split("=")[0];
+strArray1[2] = "";
+} else if (keylen == 2) {
+strArray1[0] = "@Key";
+strArray1[1] = oneLine.split("=")[0];
+strArray1[2] = oneLine.split("=")[1];
+} else {
+strArray1[0] = "@ElementError";
+strArray1[1] = "";
+strArray1[2] = "";
+strArray1[3] = "";
+}
+}
+if (strArray1[0].equals("@Node")) {
+previousNode = currentNode;
+currentNode = strArray1[1];
+if (row > 0) {
+configMap.put(previousNode, vec.elementAt(0));
+vec.clear();
+row = 0;
+}
+WriteBuffer += (oneLine + "/r/n");
+} else if (strArray1[0].equals("@Key") && row == 0) {
+Properties ht = new Properties();
+ht.setProperty(strArray1[1], strArray1[2]);
+if (strArray1[1].equals(%%1)) {
+WriteBuffer += (%%1+"=" + %%2 + "/r/n");
+} else
+WriteBuffer += (oneLine + "/r/n");
+vec.add(0, ht);
+row++;
+} else if (strArray1[0].equals("@Key") && row > 0) {
+Properties ht2 = new Properties();
+ht2.put(strArray1[1], strArray1[2]);
+vec.clear();
+vec.add(0, ht2);
+WriteBuffer += (oneLine + "/r/n");
+row++;
+}
+}
+}
+configMap.put(currentNode, vec.elementAt(0));
+} catch (FileNotFoundException e) {
+configMap = null;
+e.printStackTrace();
+} catch (IOException e) {
+configMap = null;
+e.printStackTrace();
+} finally {
+vec.clear();
+try {
+bufferedReader.close();
+fileReader.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+try {
+FileWriter fw = new FileWriter("Config.ini");
+fw.write(WriteBuffer);
+fw.flush();
+fw.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+public void init(FileInputStream fs)
+throws ClassNotFoundException, SQLException, FileNotFoundException, IOException
+{
+Properties props = new Properties();
+props.load(fs);
+String url = props.getProperty("db.url");
+String userName = props.getProperty("db.user");
+String password = props.getProperty("db.password");
+Class.forName(driverClass);
+con=DriverManager.getConnection(url, userName, password);
+}
+public void fetch() throws SQLException, IOException
+{
+PreparedStatement ps = con.prepareStatement("select SYSDATE from dual");
+ResultSet rs = ps.executeQuery();
+while (rs.next())
+{
+do the thing you do
+}
+rs.close();
+ps.close();
+}
+public static void main(String[] args)
+{
+OracleJdbcTest test = new OracleJdbcTest();
+test.init();
+test.fetch();
+}
+}
+package com.bdqn.dao;
+Java util.Date
+java.util.Date utilDate = new java.util.Date();
+java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+public static void fileCopy( File in, File out )
+throws IOException
+{
+FileChannel inChannel = new FileInputStream( in ).getChannel();
+FileChannel outChannel = new FileOutputStream( out ).getChannel();
+try
+{
+inChannel.transferTo(0, inChannel.size(), outChannel);
+apparently has trouble copying large files on Windows
+magic number for Windows, 64Mb - 32Kb)
+int maxCount = (64 * 1024 * 1024) - (32 * 1024);
+long size = inChannel.size();
+long position = 0;
+while ( position < size )
+{
+position += inChannel.transferTo( position, maxCount, outChannel );
+}
+}
+finally
+{
+if ( inChannel != null )
+{
+inChannel.close();
+}
+if ( outChannel != null )
+{
+outChannel.close();
+}
+}
+import java.io.*;
+import java.util.*;
+import java.util.regex.*;
+private HashMap configMap=null;
+private Map<String, Serializable> configMap=null;
+if(configMap==null) {
+String strLine=null;
+String currentNode=null;
+String previousNode=null;
+Vector<Properties> vec=new Vector<Properties>();
+int row=0;
+FileReader fileReader = null;
+try {
+fileReader = new FileReader(%%1);
+} catch (FileNotFoundException e1) {
+e1.printStackTrace();
+}
+BufferedReader bufferedReader=new BufferedReader(fileReader);
+try {
+while((strLine=bufferedReader.readLine())!=null) {
+String oneLine=strLine.trim();
+if(oneLine.length()>=1) {
+Pattern p=Pattern.compile("[s*.*s*]");
+int nodelen=oneLine.split("[;]").length;
+String[] strArray1=new String[4];
+if(nodelen==1) {
+oneLine=oneLine.split("[;]")[0].trim();
+}
+else if(nodelen==2) {
+strArray1[3]=oneLine.split("[;]")[1].trim();
+oneLine=oneLine.split("[;]")[0].trim();
+}
+Matcher m=p.matcher(oneLine);
+if(m.matches()) {
+strArray1[0]="@Node";
+strArray1[1]=oneLine;
+strArray1[2]="";
+} else {
+int keylen=oneLine.split("=").length;
+if(keylen==1) {
+strArray1[0]="@Key";
+strArray1[1]=oneLine.split("=")[0];
+strArray1[2]="";
+} else if(keylen==2) {
+strArray1[0]="@Key";
+strArray1[1]=oneLine.split("=")[0];
+strArray1[2]=oneLine.split("=")[1];
+} else {
+strArray1[0]="@ElementError";
+strArray1[1]="";
+strArray1[2]="";
+strArray1[3]="";
+}
+}
+if(strArray1[0].equals("@Node")) {
+previousNode=currentNode;
+currentNode=strArray1[1];
+if(row>0) {
+configMap.put(previousNode,vec.elementAt(0));
+"size:"+configMap.size()
+vec.clear();
+row=0;
+}
+} else if(strArray1[0].equals("@Key") && row==0) {
+Properties ht=new Properties();
+ht.setProperty(strArray1[1],strArray1[2]);
+vec.add(0,ht);
+row++;
+} else if(strArray1[0].equals("@Key") && row>0) {
+Properties ht2=new Properties();
+ht2.put(strArray1[1],strArray1[2]);
+vec.clear();
+vec.add(0,ht2);
+row++;
+}
+}
+}
+package com.bdqn.dao;
+configMap.put(currentNode,vec.elementAt(0));
+} catch (FileNotFoundException e) {
+configMap=null;
+e.printStackTrace();
+} catch (IOException e) {
+configMap=null;
+e.printStackTrace();
+} finally {
+vec.clear();
+try {
+bufferedReader.close();
+fileReader.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+String nodeKey="["+%%2+"]";
+Properties ht=null;
+if(configMap.containsKey(nodeKey)) {
+ht=(Properties)configMap.get(nodeKey);
+} else {
+ht=(Properties)configMap.put(nodeKey,%%3);
+}
+try {
+ht.setProperty(%%3,%%4);
+} catch (NullPointException e) {
+e.printStackTrace();
+}
+FileWriter fw= null;
+BufferedWriter bw= null;
+try {
+fw = new FileWriter(%%1);
+bw=new BufferedWriter(fw);
+} catch (IOException e) {
+e.printStackTrace();
+}
+Set keys=configMap.keySet();
+Iterator ite=keys.iterator();
+while(ite.hasNext()) {
+String oneKey=(String)ite.next();
+try {
+bw.write(oneKey+"/n");
+} catch (IOException e) {
+e.printStackTrace();
+}
+ht=(Properties)configMap.get(oneKey);
+ht.list(new PrintWriter(bw,true));
+}
+package com.bdqn.dao;
+import java.io.*;
+import java.util.*;
+import java.util.regex.*;
+private HashMap configMap=null;
+private Map<String, Serializable> configMap=null;
+if(configMap==null) {
+String strLine=null;
+String currentNode=null;
+Vector<Properties> vec=new Vector<Properties>();
+int row=0;
+FileReader fileReader = null;
+try {
+fileReader = new FileReader(%%1);
+} catch (FileNotFoundException e1) {
+e1.printStackTrace();
+}
+BufferedReader bufferedReader=new BufferedReader(fileReader);
+try {
+while((strLine=bufferedReader.readLine())!=null) {
+String oneLine=strLine.trim();
+if(oneLine.length()>=1) {
+Pattern p=Pattern.compile("[s*.*s*]");
+int nodelen=oneLine.split("[;]").length;
+String[] strArray1=new String[4];
+if(nodelen==1) {
+oneLine=oneLine.split("[;]")[0].trim();
+}
+else if(nodelen==2) {
+strArray1[3]=oneLine.split("[;]")[1].trim();
+oneLine=oneLine.split("[;]")[0].trim();
+}
+Matcher m=p.matcher(oneLine);
+if(m.matches()) {
+strArray1[0]="@Node";
+strArray1[1]=oneLine;
+strArray1[2]="";
+} else {
+int keylen=oneLine.split("=").length;
+if(keylen==1) {
+strArray1[0]="@Key";
+strArray1[1]=oneLine.split("=")[0];
+strArray1[2]="";
+} else if(keylen==2) {
+strArray1[0]="@Key";
+strArray1[1]=oneLine.split("=")[0];
+strArray1[2]=oneLine.split("=")[1];
+} else {
+strArray1[0]="@ElementError";
+strArray1[1]="";
+strArray1[2]="";
+strArray1[3]="";
+}
+}
+if(strArray1[0].equals("@Node")) {
+previousNode=currentNode;
+currentNode=strArray1[1];
+if(row>0) {
+row=0;
+}
+} else if(strArray1[0].equals("@Key") && row==0) {
+Properties ht=new Properties();
+ht.setProperty(strArray1[1],strArray1[2]);
+vec.add(0,ht);
+row++;
+} else if(strArray1[0].equals("@Key") && row>0) {
+Properties ht2=new Properties();
+ht2.put(strArray1[1],strArray1[2]);
+vec.clear();
+vec.add(0,ht2);
+row++;
+}
+}
+}
+configMap.put(currentNode,vec.elementAt(0));
+} catch (FileNotFoundException e) {
+configMap=null;
+e.printStackTrace();
+} catch (IOException e) {
+configMap=null;
+e.printStackTrace();
+} finally {
+vec.clear();
+try {
+bufferedReader.close();
+fileReader.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+package com.dyrio.graphics;
+public byte[]
+SetImageToByteArrayFileUpload FileUpload1
+{ Stream stream = FileUpload1.PostedFile.InputStream;
+byte[] photo = new byte[FileUpload1.PostedFile.ContentLength];
+stream.Readphoto, 0, FileUpload1.PostedFile.ContentLength
+stream.Close
+return photo;
+}
+System.Drawing;/using System.IO;
+using System.Data.SqlClient;*/ public Image SetByteToImagebyte[] mybyte
+{ Image image; MemoryStream mymemorystream = new MemoryStreammybyte,0, mybyte.Length
+image = Image.FromStreammymemorystream
+return image;
+}
+public class SleepSort {
+public static void main(String[] args) {
+int[] ints = {1,4,7,3,8,9,2,6,5};
+SortThread[] sortThreads = new SortThread[ints.length];
+for (int i = 0; i < sortThreads.length; i++) {
+sortThreads[i] = new SortThread(ints[i]);
+}
+for (int i = 0; i < sortThreads.length; i++) {
+sortThreads[i].start();
+}
+}
+}
+class SortThread extends Thread{
+int ms = 0;
+public SortThread(int ms){
+this.ms = ms;
+}
+public void run(){
+try {
+sleep(ms*10+10);
+} catch (InterruptedException e) {
+TODO Auto-generated catch block
+e.printStackTrace();
+}
+System.out.println(ms);
+}
+}
+package com.dyrio.graphics;
+package com.dyrio.graphics;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+public class Graphics1 extends Frame {
+private static final long serialVersionUID = 1L;
+private int xPosition = 100;
+private int yPosition = 50;
+private static final int xSize = 300;
+private static final int ySize = 100;
+private static Graphics2D graphics2D;
+private static final String MESSAGE = "Welcome to 2D Graphics";
+public Graphics1() {
+addWindowListener(new ExitAdapter());
+}
+public void paint(Graphics g) {
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.File;
+public void captureScreen(String fileName) throws Exception {
+Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+Rectangle screenRectangle = new Rectangle(screenSize);
+Robot robot = new Robot();
+BufferedImage image = robot.createScreenCapture(screenRectangle);
+ImageIO.write(image, "png", new File(fileName));
+}
+import java.io.File;
+import java.io.FileOutputStream;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import com.sun.image.codec.jpeg.JPEGCodec;
+import com.sun.image.codec.jpeg.JPEGImageEncoder;
+public class JpgTest {
+public void JpgTset throws Exception{
+File _file = new File"/Order005-0001.jpg"
+Image src = javax.imageio.ImageIO.read_file
+int wideth=src.getWidthnull
+int height=src.getHeightnull
+BufferedImage tag = new BufferedImagewideth/2,height/2,BufferedImage.TYPE_INT_RGB
+tag.getGraphicsdrawImagesrc,0,0,wideth/2,height/2,null
+FileOutputStream out=new FileOutputStream"newfile.jpg"
+JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoderout
+encoder.encodetag
+System.out.printwidth+"*"+height
+out.close
+}
