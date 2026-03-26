@@ -78,4 +78,5 @@ logs/
 coverage/
 .DS_Store?
 *.orig
+src/config/
 
